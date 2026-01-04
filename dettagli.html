@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dettagli matrimonio – Salvatore & Ester</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#fdfaf7; --accent:#c9a27c; --accent-soft:#f1e1cf; --text-main:#333; --text-light:#666; --white:#fff; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Nunito",system-ui;background-color:var(--bg);color:var(--text-main);line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    header{position:sticky;top:0;z-index:100;background-color:rgba(253,250,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee0d0;}
+    .nav{max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;letter-spacing:1px;}
+    .nav-links{display:flex;gap:18px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+    .nav-links a{padding-bottom:2px;border-bottom:1px solid transparent;}
+    .nav-links a:hover{border-color:var(--accent);}
+    .nav-links .active{border-color:var(--accent);font-weight:600;}
+    main{max-width:900px;margin:0 auto;padding:40px 20px 60px;}
+    .page-title{text-align:center;font-family:"Playfair Display",serif;font-size:30px;margin-bottom:10px;}
+    .page-subtitle{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:30px;}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+    .card{background:#fff;border-radius:18px;padding:20px 18px;border:1px solid #e4d8cb;box-shadow:0 10px 22px rgba(0,0,0,0.03);font-size:14px;}
+    .card-label{text-transform:uppercase;font-size:11px;letter-spacing:1px;color:var(--text-light);margin-bottom:6px;}
+    .card-title{font-weight:600;margin-bottom:6px;}
+    .card-text{color:var(--text-light);font-size:14px;}
+    .note{margin-top:22px;font-size:13px;color:var(--text-light);}
+    @media(max-width:700px){.nav{flex-direction:column;gap:6px;}.cards{grid-template-columns:minmax(0,1fr);}}
+  </style>
+</head>
+<body>
+ <header>
+   <nav class="nav">
+  <div class="nav-logo">Ester &amp; Salvo</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+
+    <!-- DROPDOWN 1: INFORMAZIONI -->
+    <li class="has-dropdown">
+      <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
+      <ul class="dropdown">
+        <li><a href="dove-e-quando.html">Dove e quando</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+      </ul>
+    </li>
+
+    <!-- DROPDOWN 2: INFO SU LICATA -->
+    <li class="has-dropdown">
+      <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
+      <ul class="dropdown">
+        <li><a href="ristoranti.html">Ristoranti</a></li>
+        <li><a href="bar.html">Bar</a></li>
+        <li><a href="luoghi.html">Luoghi da visitare</a></li>
+        <li><a href="come-arrivare.html">Come arrivare</a></li>
+      </ul>
+    </li>
+
+    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="lista-nozze.html">Lista nozze</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+
+  <main>
+    <h1 class="page-title">Il grande giorno</h1>
+    <p class="page-subtitle">
+      Tutte le informazioni su cerimonia, ricevimento e spostamenti.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Cerimonia</div>
+        <div class="card-title">Nome della chiesa / comune</div>
+        <p class="card-text">
+          Indirizzo completo, città.<br/>
+          <strong>Orario:</strong> 16:00
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Ricevimento</div>
+        <div class="card-title">Nome della location</div>
+        <p class="card-text">
+          Indirizzo completo, città.<br/>
+          <strong>Orario:</strong> a seguire la cerimonia
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Autobus</div>
+        <div class="card-title">Trasferimento chiesa &rarr; ristorante</div>
+        <p class="card-text">
+          È previsto un autobus dalla chiesa alla location del ricevimento.
+          Nella pagina RSVP potrai indicare se desideri usufruirne.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Dress code</div>
+        <div class="card-title">Stile dell’evento</div>
+        <p class="card-text">
+          Qui puoi indicare se preferite un abbigliamento elegante, formale,
+          colori consigliati, ecc.
+        </p>
+      </div>
+    </div>
+
+    <p class="note">
+      Più avanti puoi aggiungere qui sotto i link a Google Maps per chiesa e ristorante.
+    </p>
+  </main>
+</body>
+</html>

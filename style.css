@@ -1,0 +1,1123 @@
+:root {
+  --bg: #fdfaf7;
+  --accent: #c9a27c;
+  --accent-soft: #f1e1cf;
+  --text-main: #333333;
+  --text-light: #666666;
+  --white: #ffffff;
+  --green: #4b6b3f;
+}
+
+/* RESET BASE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER / NAV */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(253, 250, 247, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #eee0d0;
+}
+
+.section-intro {
+  font-family: "Great Vibes", cursive;
+  font-size: 40px;          /* ben leggibile */
+  color: #2a2a2a;           /* grigio scuro elegante */
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+  max-width: 900px;
+  margin: 0 auto 2.4rem;
+}
+
+
+/* PAGINA TIMELINE */
+
+.timeline-page {
+  max-width: 1100px;
+  margin: 0 auto;   /* <– aggiungi questa riga */
+}
+
+
+/* contenitore timeline */
+
+.timeline-section {
+  position: relative;
+  padding: 40px 0 10px;
+}
+
+/* linea verticale centrale */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 70px;
+  width: 2px;
+  background: linear-gradient(to bottom, #d3e2c8, #b0c79e);
+  transform: translateX(-50%);
+}
+
+/* singolo evento timeline */
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+/* disposizione a sinistra / destra */
+
+.timeline-item.left {
+  justify-content: flex-start;
+}
+
+.timeline-item.right {
+  justify-content: flex-end;
+}
+
+/* card bianca con testo */
+
+.timeline-card{
+  background:#ffffff;
+  border:1px solid #f0e1d2;
+  border-radius:18px;
+  padding:18px 20px;
+  box-shadow:0 12px 26px rgba(0,0,0,0.05);
+  max-width:420px;
+  width:100%;
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* bollino con orario */
+
+.timeline-time-badge {
+  position: relative;
+  z-index: 2;
+  background-color: #6b8f6a;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* pulsante in fondo */
+
+.timeline-cta {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+.timeline-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+}
+
+.timeline-icon{
+  width:26px;          /* oppure 30px se la vuoi un filo più grande */
+  height:26px;
+  display:inline-block; /* IMPORTANTISSIMO */
+  margin:0;            /* niente margin-bottom */
+  flex-shrink:0;
+  opacity:0.9;
+}
+
+/* RESPONSIVE TIMELINE */
+
+@media (max-width: 800px) {
+  .timeline-line {
+    left: 16px;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    justify-content: flex-start;
+    margin-left: 10px;
+  }
+
+  .timeline-time-badge {
+    margin: 0 10px 0 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .section-intro {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+}
+
+/* PAGINE INFO CITTÀ (Ristoranti, Bar, Luoghi, Come arrivare) */
+
+.info-hero {
+  text-align: center;
+  padding: 40px 20px 26px;
+}
+
+.info-hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  color: #496539;
+  margin-bottom: 6px;
+}
+
+.info-hero-subtitle {
+  font-size: 15px;
+  color: var(--text-light);
+}
+
+.info-divider {
+  margin: 24px auto 32px;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #c9a27c, transparent);
+  position: relative;
+}
+
+.info-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid #c9a27c;
+  background-color: var(--bg);
+}
+
+/* FONT PIÙ GRANDI – RISTORANTI / BAR / LUOGHI */
+
+.info-list-page {
+  max-width: 1100px;
+  margin: 40px auto 70px;
+  padding: 0 20px;
+  font-size: 16px;           /* base più grande */
+}
+
+.info-section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;           /* titolo grande al centro */
+  text-align: center;
+  margin-bottom: 26px;
+  color: #243447;            /* simile allo screen (blu/grigio scuro) */
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;                 /* spazio tra un luogo/ristorante e l’altro */
+}
+
+.info-item-title {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;           /* come “Quartiere Marina” nello screen */
+  margin-bottom: 6px;
+  color: #243447;
+}
+
+.info-item-meta {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.info-item-note {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+/* CTA in fondo pagina (bottoni verdi tipo esempio) */
+
+.info-cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.info-cta {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid #4b6b3f;
+  font-size: 13px;
+  background-color: #4b6b3f;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.info-cta:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .info-cta-row {
+    flex-direction: column;
+  }
+}
+
+
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* se usi il markup con <ul class="nav-links"> */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links > li {
+  position: relative;
+}
+
+.nav-links a {
+  padding: 6px 4px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  border-color: var(--accent);
+}
+
+.nav-links .active {
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* DROPDOWN "INFORMAZIONI" */
+
+.has-dropdown .nav-link-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid #f0e1d2;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 170px;
+  display: none;
+  z-index: 50;
+}
+
+.dropdown li a {
+  display: block;
+  padding: 7px 16px;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: none;
+  color: #555;
+}
+
+.dropdown li a:hover {
+  background-color: #faf3e7;
+  color: #333;
+}
+
+.has-dropdown:hover .dropdown {
+  display: block;
+}
+
+/* HERO CON PATTERN */
+
+.hero {
+  position: relative;
+  background: #faf9f6 url("img/pattern_marilu.png") repeat;
+  background-size: 380px;
+  border-bottom: 1px solid #f0e1d2;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+/* Logo a sinistra */
+
+.hero-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.name-logo {
+  width: 380px;        /* qui regoli la dimensione del logo */
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Countdown a destra */
+
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, #ffffff, #f6ece2);
+  border-radius: 24px;
+  padding: 22px 20px 24px;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1dfcf;
+  max-width: 320px;
+  width: 100%;
+}
+
+.countdown-title {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.countdown-item {
+  flex: 1;
+  padding: 10px 6px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  border: 1px solid #f0e1d2;
+}
+
+.countdown-number {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+}
+
+.countdown-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-light);
+}
+
+.hero-card-note {
+  font-size: 13px;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* INTRO SOTTO HERO */
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+.intro {
+  padding: 22px 0 24px;
+}
+
+.intro-inner {
+  max-width: 1100px;   /* puoi lasciare 650 se preferisci più stretto */
+  margin: 0 auto;     /* <– questo la centra rispetto alla pagina */
+}
+
+
+.intro-date-place {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.intro-text {
+  font-size: 15px;
+  color: var(--text-light);
+  margin-bottom: 18px;
+}
+
+/* Frase sopra i bottoni */
+
+
+/* Pulsanti */
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;   /* <– centra i bottoni */
+}
+
+.hero.hero-small {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Velo bianco sopra tutti i blocchi hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.78);
+  z-index: 1;
+}
+
+/* tutti gli elementi dentro devono stare sopra il velo */
+.hero .hero-inner,
+.hero .hero-card {
+  position: relative;
+  z-index: 2;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--accent);
+}
+
+.btn-ghost:hover {
+  background-color: var(--accent-soft);
+}
+
+/* GALLERIA */
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #f0e1d2;
+  background-color: #f8f1e8;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+
+.site-footer {
+  border-top: 1px solid #f0e1d2;
+  background-color: var(--bg);
+  padding: 32px 20px 18px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.footer-top {
+  max-width: 1100px;
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.footer-col {
+  text-align: left;
+}
+
+.footer-title {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  color: #496539; /* verde come i titoli */
+  margin-bottom: 10px;
+}
+
+.footer-col p,
+.footer-col li {
+  margin-bottom: 6px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+/* riga finale tipo copyright */
+
+.footer-bottom {
+  border-top: 1px solid #eee0d0;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.footer-bottom span {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+.box {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1100px;
+}
+
+/* responsive footer */
+
+@media (max-width: 800px) {
+  .footer-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+}
+
+
+footer span {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+/* HERO PICCOLA PER PAGINE INTERNE (Dove e quando, ecc.) */
+
+.hero-small .hero-inner {
+  max-width: 1100px;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px 35px;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #495b39;
+}
+
+/* PAGINA COME ARRIVARE */
+
+.travel-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.travel-section:first-of-type {
+  margin-top: 50px;
+}
+
+.travel-section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 26px;
+  color: #495b39;
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.travel-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #f0e1d2;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.03);
+  padding: 18px 18px 20px;
+  font-size: 14px;
+}
+
+.travel-card-header {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #495b39;
+}
+
+.travel-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background-color: #f6f2de;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #7c6a2b;
+}
+
+.travel-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.travel-list li {
+  margin-bottom: 4px;
+}
+
+.travel-divider {
+  margin: 40px auto;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #c9a27c, transparent);
+  position: relative;
+}
+
+.travel-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid #c9a27c;
+  background-color: var(--bg);
+}
+
+/* griglia "Informazioni utili" */
+
+.travel-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.travel-info-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #f0e1d2;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.02);
+  padding: 16px 16px 18px;
+  font-size: 13px;
+}
+
+.travel-info-title {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #495b39;
+}
+
+/* responsive */
+
+@media (max-width: 900px) {
+  .travel-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .travel-info-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* responsive */
+
+@media (max-width: 900px) {
+  .travel-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .travel-info-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* PAGINA DOVE E QUANDO */
+
+.page-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+.place-section {
+  margin-bottom: 32px;
+}
+
+.place-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch; /* ← FONDAMENTALE */
+}
+
+
+.place-card.reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+}
+
+.place-media {
+  height: 100%;
+}
+
+.place-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mantiene proporzioni */
+  border-radius: 18px;
+  border: 1px solid #f0e1d2;
+}
+
+
+.place-content {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #f0e1d2;
+  padding: 18px 18px 20px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.03);
+  font-size: 14px;
+}
+
+.place-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #496539;
+}
+
+.place-text {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+/* tabellina info */
+
+.info-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  font-size: 13px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #4f5f3d;
+}
+
+.info-value a {
+  color: #6b8f6a;
+  text-decoration: underline;
+}
+
+.share-photos {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 30px 20px 10px;
+  text-align: center;
+}
+
+.share-photos-inner {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #f0e1d2;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.03);
+  padding: 18px 18px 22px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.share-photos-inner p {
+  margin-bottom: 14px;
+}
+.icon-timeline {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 10px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* --- CARDS WEDDING STYLE --- */
+.wedding-card {
+  background: #faf7eb;          /* beige molto chiaro */
+  border-radius: 22px;
+  border: 1px solid #ecdcc3;    /* linea morbida elegante */
+  padding: 26px 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.04);
+  font-size: 17px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.wedding-card,
+.location-card {
+  margin: 0 !important;   /* niente margin-top/bottom */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.wedding-card h2, 
+.wedding-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  color: #496539;
+  margin-bottom: 18px;
+}
+
+.wedding-info-row {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid #f1dfcf;
+  padding: 14px 18px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+/* Etichetta a sinistra */
+.wedding-label {
+  font-weight: 600;
+  color: #4f5f3d;
+}
+
+/* Valore a destra */
+.wedding-value {
+  color: #2d2d2d;
+}
+
+
+
+
+/* --- CARD LOCATION RISTORANTE --- */
+.location-card {
+  background: #faf7eb;
+  border-radius: 26px;
+  border: 1px solid #ecdcc3;
+  padding: 32px 38px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+  margin-top: 40px;
+  font-size: 18px;
+  color: #4a4a4a;
+}
+
+.location-card h2 {
+  font-family: "Playfair Display", serif;
+  color: #4e623f;
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.location-card p.desc {
+  margin-bottom: 30px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.location-card .field {
+  background: rgba(255, 255, 255, 0.6); /* uguale alla chiesa */
+  border: 1px solid #f1dfcf;            /* stessa bordatura */
+  padding: 14px 18px;                   /* stessa imbottitura */
+  border-radius: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+
+.location-card .field-label {
+  font-weight: 700;
+  color: #4e623f;
+  margin-right: 6px;
+}
+
+.location-card a {
+  color: #8a6d3b;
+  text-decoration: underline;
+}
+
+/* responsive per la pagina info */
+
+@media (max-width: 800px) {
+  .place-card,
+  .place-card.reverse {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .hero-left {
+    justify-content: center;
+  }
+
+  .intro-inner {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav-links {
+    font-size: 12px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .name-logo {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

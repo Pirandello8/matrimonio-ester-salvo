@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ester & Salvo - 8 Agosto 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+  <!-- CSS principale -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+   <nav class="nav">
+  <div class="nav-logo">Ester &amp; Salvo</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+
+    <!-- DROPDOWN 1: INFORMAZIONI -->
+    <li class="has-dropdown">
+      <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
+      <ul class="dropdown">
+        <li><a href="dove-e-quando.html">Dove e quando</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+      </ul>
+    </li>
+
+    <!-- DROPDOWN 2: INFO SU LICATA -->
+    <li class="has-dropdown">
+      <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
+      <ul class="dropdown">
+        <li><a href="ristoranti.html">Ristoranti</a></li>
+        <li><a href="bar.html">Bar</a></li>
+        <li><a href="luoghi.html">Luoghi da visitare</a></li>
+        <li><a href="come-arrivare.html">Come arrivare</a></li>
+      </ul>
+    </li>
+
+    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="lista-nozze.html">Lista nozze</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <!-- HERO CON PATTERN: logo a sinistra, countdown a destra -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <img
+          src="img/logo_with_frame.png"
+          alt="Ester & Salvo - 8 Agosto 2026"
+          class="name-logo"
+        />
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="countdown-title">Conto alla rovescia</div>
+          <div class="countdown" id="countdown">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">-</div>
+              <div class="countdown-label">Giorni</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">-</div>
+              <div class="countdown-label">Ore</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">-</div>
+              <div class="countdown-label">Minuti</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">-</div>
+              <div class="countdown-label">Secondi</div>
+            </div>
+          </div>
+          <p class="hero-card-note">
+            Non vediamo l’ora di festeggiare con voi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- TESTO INTRO + PULSANTI -->
+    <section class="intro">
+      <div class="intro-inner">
+
+       <p class="section-intro">
+        Qui trovate tutto quello che vi serve per accompagnarci in questo momento unico:<br>
+       </p>
+
+
+        <div class="hero-buttons">
+          <a href="lista-nozze.html" class="btn btn-primary">Lista nozze</a>
+          
+          <a href="rsvp.html" class="btn btn-ghost">Conferma presenza</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERIA -->
+    <section id="galleria">
+      <h2 class="section-title">I nostri momenti</h2>
+      <p class="section-subtitle">
+        Alcune foto che raccontano un po’ della nostra storia.
+      </p>
+
+      <div class="gallery-grid">
+        <!-- Cambia gli src con le tue foto -->
+        <div class="gallery-item"><img src="img/photo1.jpeg" alt="Foto 1" /></div>
+        <div class="gallery-item"><img src="img/photo2.jpeg" alt="Foto 2" /></div>
+        <div class="gallery-item"><img src="img/photo3.jpeg" alt="Foto 3" /></div>
+        <div class="gallery-item"><img src="img/photo4.jpeg" alt="Foto 4" /></div>
+        <div class="gallery-item"><img src="img/photo5.jpeg" alt="Foto 5" /></div>
+        <div class="gallery-item"><img src="img/photo6.jpeg" alt="Foto 6" /></div>
+        <div class="gallery-item"><img src="img/photo7.jpeg" alt="Foto 7" /></div>
+        <div class="gallery-item"><img src="img/photo8.jpeg" alt="Foto 8" /></div>
+        <div class="gallery-item"><img src="img/photo9.jpeg" alt="Foto 9" /></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="share-photos">
+  <h2 class="section-title">Condividi le tue foto</h2>
+  <p class="section-subtitle">
+    Ci farebbe piacere raccogliere anche i vostri ricordi. Potete caricare le foto del matrimonio
+    nel nostro album condiviso.
+  </p>
+
+  <div class="share-photos-inner">
+    <p>
+      Cliccando sul pulsante qui sotto si apre una cartella/album dove potete
+      aggiungere le vostre foto in modo semplice, anche da telefono.
+    </p>
+    <a href="LINK_AL_TUO_ALBUM" target="_blank" class="btn btn-primary">
+      Carica le tue foto
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4 class="footer-title">Contatti</h4>
+      <p>Ester: <a href="tel:+39XXXXXXXXXX">+39 XXXXX XXXXX</a></p>
+      <p>Salvo: <a href="tel:+39XXXXXXXXXX">+39 XXXXX XXXXX</a></p>
+      <p><a href="mailto:tuamail@example.com">tuamail@example.com</a></p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Matrimonio</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dettagli.html">Dettagli del matrimonio</a></li>
+        <li><a href="dove-e-quando.html">Dove e quando</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Info utili</h4>
+      <ul>
+        <li><a href="lista-nozze.html">Lista nozze</a></li>
+        <li><a href="rsvp.html">Conferma presenza (RSVP)</a></li>
+        <!-- Puoi aggiungere link esterni tipo Google Maps / hotel -->
+        <!-- <li><a href="#" target="_blank">Dove dormire</a></li> -->
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Con affetto,
+      <span>Ester &amp; Salvo</span> · 8 Agosto 2026
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  <!-- COUNTDOWN -->
+  <script>
+    const weddingDate = new Date("2026-08-08T16:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      if (!daysEl) return;
+
+      if (diff <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "0";
+        minutesEl.textContent = "0";
+        secondsEl.textContent = "0";
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000);
+      const days = Math.floor(seconds / (3600 * 24));
+      const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = secs;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

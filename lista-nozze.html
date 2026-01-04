@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista nozze – Salvatore & Ester</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* stessi stili base della home, leggermente ridotti */
+    :root { --bg:#fdfaf7; --accent:#c9a27c; --accent-soft:#f1e1cf; --text-main:#333; --text-light:#666; --white:#fff; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Nunito",system-ui;background-color:var(--bg);color:var(--text-main);line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    header{position:sticky;top:0;z-index:100;background-color:rgba(253,250,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee0d0;}
+    .nav{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;letter-spacing:1px;}
+    .nav-links{display:flex;gap:18px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+    .nav-links a{padding-bottom:2px;border-bottom:1px solid transparent;}
+    .nav-links a:hover{border-color:var(--accent);}
+    .nav-links .active{border-color:var(--accent);font-weight:600;}
+    main{max-width:900px;margin:0 auto;padding:40px 20px 60px;}
+    .page-title{text-align:center;font-family:"Playfair Display",serif;font-size:32px;margin-bottom:10px;color:#66533c;}
+    .page-subtitle{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:30px;}
+    .box{background:#fff;border-radius:20px;padding:30px 24px;border:1px solid #e4d8cb;box-shadow:0 10px 25px rgba(0,0,0,0.04);}
+    .box h3{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:20px;color:#66533c;text-align:center;}
+    .box p{font-size:14px;margin-bottom:8px;}
+    .iban{font-weight:700;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:999px;font-size:14px;border:1px solid var(--accent);cursor:pointer;transition:all 0.2s ease;background-color:var(--accent);color:var(--white);margin-top:14px;}
+    .btn:hover{filter:brightness(1.05);transform:translateY(-1px);}
+    .back-links{margin-top:30px;text-align:center;font-size:13px;color:var(--text-light);}
+    @media(max-width:700px){.nav{flex-direction:column;gap:6px;font-size:12px;}}
+  </style>
+</head>
+<body>
+ <header>
+   <nav class="nav">
+  <div class="nav-logo">Ester &amp; Salvo</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+
+    <!-- DROPDOWN 1: INFORMAZIONI -->
+    <li class="has-dropdown">
+      <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
+      <ul class="dropdown">
+        <li><a href="dove-e-quando.html">Dove e quando</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+      </ul>
+    </li>
+
+    <!-- DROPDOWN 2: INFO SU LICATA -->
+    <li class="has-dropdown">
+      <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
+      <ul class="dropdown">
+        <li><a href="ristoranti.html">Ristoranti</a></li>
+        <li><a href="bar.html">Bar</a></li>
+        <li><a href="luoghi.html">Luoghi da visitare</a></li>
+        <li><a href="come-arrivare.html">Come arrivare</a></li>
+      </ul>
+    </li>
+
+    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="lista-nozze.html">Lista nozze</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+
+  <main>
+    <h1 class="page-title">Un dono che diventa ricordo</h1>
+    <p class="page-subtitle">
+      Per chi desidera farci un regalo, abbiamo scelto di raccogliere un contributo
+      per i nostri progetti futuri.
+    </p>
+
+    <div class="box">
+      <h3>Come contribuire</h3>
+
+      <p><strong>Banca:</strong> Nome banca</p>
+      <p><strong>Intestato a:</strong> Salvatore &amp; Ester</p>
+      <p class="iban"><strong>IBAN:</strong> <span id="iban">IT00A0000000000000000000000</span></p>
+      <p><strong>Causale:</strong> Lista nozze Salvatore &amp; Ester</p>
+
+      <p style="margin-top:18px;font-size:13px;color:var(--text-light);">
+        Il vostro affetto e la vostra presenza sono per noi il dono più importante.
+        Chi volesse aggiungere un pensiero in più potrà farlo con un bonifico a questo IBAN.
+      </p>
+
+      <button class="btn" onclick="copyIBAN()">Copia IBAN</button>
+    </div>
+
+    <div class="back-links">
+      <a href="index.html">Torna alla home</a> ·
+      <a href="dove-e-quando.html">Informazioni</a>
+    </div>
+  </main>
+
+    <script>
+    function copyIBAN() {
+      const iban = document.getElementById("iban").innerText;
+      navigator.clipboard.writeText(iban);
+      alert("IBAN copiato negli appunti!");
+    }
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4 class="footer-title">Contatti</h4>
+        <p>Ester: <a href="tel:+39XXXXXXXXXX">+39 XXX XXX XXXX</a></p>
+        <p>Salvo: <a href="tel:+39XXXXXXXXXX">+39 XXX XXX XXXX</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Matrimonio</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dove-e-quando.html">Informazioni</a></li>
+          <li><a href="rsvp.html">RSVP</a></li>
+          <li><a href="lista-nozze.html">Lista nozze</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Info utili</h4>
+        <ul>
+          <li><a href="dove-e-quando.html">Dove e quando</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Con affetto, <span>Ester &amp; Salvo</span> · 8 Agosto 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
