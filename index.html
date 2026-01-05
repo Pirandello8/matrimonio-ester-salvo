@@ -235,27 +235,6 @@
     setInterval(updateCountdown, 1000);
   </script>
 
-  <script>
-  const toggleBtn = document.querySelector(".nav-toggle");
-  const navMenu = document.getElementById("navMenu");
-
-  if (toggleBtn && navMenu) {
-    toggleBtn.addEventListener("click", () => {
-      const isOpen = navMenu.classList.toggle("open");
-      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      toggleBtn.textContent = isOpen ? "✕" : "☰";
-    });
-
-    // Chiudi menu quando clicchi un link (mobile)
-    navMenu.addEventListener("click", (e) => {
-      if (e.target.tagName.toLowerCase() === "a" && navMenu.classList.contains("open")) {
-        navMenu.classList.remove("open");
-        toggleBtn.setAttribute("aria-expanded", "false");
-        toggleBtn.textContent = "☰";
-      }
-    });
-  }
-</script>
 
 <script>
   (function () {
