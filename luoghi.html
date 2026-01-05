@@ -12,33 +12,40 @@
    <nav class="nav">
   <div class="nav-logo">Ester &amp; Salvo</div>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+  <!-- HAMBURGER (solo mobile) -->
+  <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 
-    <!-- DROPDOWN 1: INFORMAZIONI -->
-    <li class="has-dropdown">
-      <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
-      <ul class="dropdown">
-        <li><a href="dove-e-quando.html">Dove e quando</a></li>
-        <li><a href="timeline.html">Timeline</a></li>
-      </ul>
-    </li>
+  <!-- MENU -->
+  <div class="nav-menu" id="navMenu">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
 
-    <!-- DROPDOWN 2: INFO SU LICATA -->
-    <li class="has-dropdown">
-      <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
-      <ul class="dropdown">
-        <li><a href="ristoranti.html">Ristoranti</a></li>
-        <li><a href="bar.html">Bar</a></li>
-        <li><a href="luoghi.html">Luoghi da visitare</a></li>
-        <li><a href="come-arrivare.html">Come arrivare</a></li>
-      </ul>
-    </li>
+      <li class="has-dropdown">
+        <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
+        <ul class="dropdown">
+          <li><a href="dove-e-quando.html">Dove e quando</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+      </li>
 
-    <li><a href="rsvp.html">RSVP</a></li>
-    <li><a href="lista-nozze.html">Lista nozze</a></li>
-  </ul>
+      <li class="has-dropdown">
+        <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
+        <ul class="dropdown">
+          <li><a href="ristoranti.html">Ristoranti</a></li>
+          <li><a href="bar.html">Bar</a></li>
+          <li><a href="luoghi.html">Luoghi da visitare</a></li>
+          <li><a href="come-arrivare.html">Come arrivare</a></li>
+        </ul>
+      </li>
+
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="lista-nozze.html">Lista nozze</a></li>
+    </ul>
+  </div>
 </nav>
+
 
   </header>
 
@@ -158,8 +165,9 @@
         <h4 class="footer-title">Contatti</h4>
        <p>Ester: <a href="tel:+39320 600 9122">+39 320 600 9122</a></p>
         <p>Salvo: <a href="tel:+39327 779 2279">+39 327 779 2279</a></p>
-        <p><a href="salcur89@live.com">salcur89@live.com</a></p>
-        <p><a href="ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
+        <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
+        <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
+
       </div>
 
       <div class="footer-col">
@@ -187,5 +195,69 @@
       <span>Ester &amp; Salvo</span> · 8 Agosto 2026</p>
     </div>
   </footer>
+
+
+<script>
+  (function () {
+    const btn = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("navMenu");
+    const dropdownLinks = document.querySelectorAll(".has-dropdown > .nav-link-main");
+
+    if (!btn || !menu) return;
+
+    function closeMenu() {
+      document.body.classList.remove("nav-open");
+      btn.setAttribute("aria-expanded", "false");
+      // chiudi anche i dropdown aperti
+      document.querySelectorAll(".has-dropdown.open").forEach(li => li.classList.remove("open"));
+    }
+
+    btn.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("nav-open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      if (!isOpen) closeMenu();
+    });
+
+    // Dropdown su mobile: tap per aprire/chiudere
+    dropdownLinks.forEach(a => {
+      a.addEventListener("click", (e) => {
+        // solo su mobile
+        if (window.matchMedia("(max-width: 800px)").matches) {
+          e.preventDefault();
+          const li = a.closest(".has-dropdown");
+          const isOpen = li.classList.toggle("open");
+          // chiudi gli altri
+          document.querySelectorAll(".has-dropdown").forEach(x => {
+            if (x !== li) x.classList.remove("open");
+          });
+          // se richiudi, resta nel menu
+          if (!isOpen) li.classList.remove("open");
+        }
+      });
+    });
+
+    // Chiudi menu cliccando fuori
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      const clickedInside = menu.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside) closeMenu();
+    });
+
+    // Chiudi menu quando cambi pagina (click su un link semplice)
+    document.querySelectorAll("#navLinks a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 800px)").matches) closeMenu();
+      });
+    });
+
+    // Se ruoti/allarghi schermo, resetta
+    window.addEventListener("resize", () => {
+      if (!window.matchMedia("(max-width: 800px)").matches) {
+        closeMenu();
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
