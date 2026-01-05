@@ -15,38 +15,42 @@
 </head>
 <body>
   <header>
-   <nav class="nav">
-  <div class="nav-logo">Ester &amp; Salvo</div>
+  <nav class="nav">
+    <div class="nav-logo">Ester &amp; Salvo</div>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <!-- Bottone hamburger (visibile solo su mobile via CSS) -->
+    <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+      ☰
+    </button>
 
-    <!-- DROPDOWN 1: INFORMAZIONI -->
-    <li class="has-dropdown">
-      <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
-      <ul class="dropdown">
-        <li><a href="dove-e-quando.html">Dove e quando</a></li>
-        <li><a href="timeline.html">Timeline</a></li>
-      </ul>
-    </li>
+    <!-- Menu -->
+    <ul class="nav-links" id="navMenu">
+      <li><a href="index.html">Home</a></li>
 
-    <!-- DROPDOWN 2: INFO SU LICATA -->
-    <li class="has-dropdown">
-      <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
-      <ul class="dropdown">
-        <li><a href="ristoranti.html">Ristoranti</a></li>
-        <li><a href="bar.html">Bar</a></li>
-        <li><a href="luoghi.html">Luoghi da visitare</a></li>
-        <li><a href="come-arrivare.html">Come arrivare</a></li>
-      </ul>
-    </li>
+      <li class="has-dropdown">
+        <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
+        <ul class="dropdown">
+          <li><a href="dove-e-quando.html">Dove e quando</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+      </li>
 
-    <li><a href="rsvp.html">RSVP</a></li>
-    <li><a href="lista-nozze.html">Lista nozze</a></li>
-  </ul>
-</nav>
+      <li class="has-dropdown">
+        <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
+        <ul class="dropdown">
+          <li><a href="ristoranti.html">Ristoranti</a></li>
+          <li><a href="bar.html">Bar</a></li>
+          <li><a href="luoghi.html">Luoghi da visitare</a></li>
+          <li><a href="come-arrivare.html">Come arrivare</a></li>
+        </ul>
+      </li>
 
-  </header>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="lista-nozze.html">Lista nozze</a></li>
+    </ul>
+  </nav>
+</header>
+
 
   <!-- HERO CON PATTERN: logo a sinistra, countdown a destra -->
   <section class="hero">
@@ -148,9 +152,12 @@
   <div class="footer-top">
     <div class="footer-col">
       <h4 class="footer-title">Contatti</h4>
-      <p>Ester: <a href="tel:+39XXXXXXXXXX">+39 XXXXX XXXXX</a></p>
-      <p>Salvo: <a href="tel:+39XXXXXXXXXX">+39 XXXXX XXXXX</a></p>
-      <p><a href="mailto:tuamail@example.com">tuamail@example.com</a></p>
+     <p>Ester: <a href="tel:+39320 600 9122">+39 320 600 9122</a></p>
+        <p>Salvo: <a href="tel:+39327 779 2279">+39 327 779 2279</a></p>
+        <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
+        <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
+
+
     </div>
 
     <div class="footer-col">
@@ -224,5 +231,28 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
+
+  <script>
+  const toggleBtn = document.querySelector(".nav-toggle");
+  const navMenu = document.getElementById("navMenu");
+
+  if (toggleBtn && navMenu) {
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      toggleBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Chiudi menu quando clicchi un link (mobile)
+    navMenu.addEventListener("click", (e) => {
+      if (e.target.tagName.toLowerCase() === "a" && navMenu.classList.contains("open")) {
+        navMenu.classList.remove("open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        toggleBtn.textContent = "☰";
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
