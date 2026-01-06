@@ -21,15 +21,22 @@ body {
 a { text-decoration: none; color: inherit; }
 
 /* =========================
-   HEADER / NAV
+   HEADER / NAV (pulita)
    ========================= */
-header {
+header{
   position: sticky;
   top: 0;
   z-index: 9999;
   background-color: rgba(253, 250, 247, 0.96);
-  backdrop-filter: blur(8px);
   border-bottom: 1px solid #eee0d0;
+}
+
+/* blur SOLO desktop (più stabile su iOS con menu fixed) */
+@media (min-width: 801px){
+  header{
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 
 .nav {
@@ -48,32 +55,34 @@ header {
   font-weight: 700;
 }
 
-/* HAMBURGER (mobile) */
-.nav-toggle {
-  display: none;                /* appare solo su mobile */
+/* hamburger (base: nascosto, si mostra in mobile) */
+.nav-toggle{
+  display: none;
   width: 44px;
   height: 44px;
   border: 1px solid #eee0d0;
   background: rgba(255,255,255,0.75);
   border-radius: 12px;
   cursor: pointer;
+
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  padding: 10px;
+  gap: 6px;
+
   position: relative;
-  z-index: 10000;               /* sopra overlay */
+  z-index: 10002; /* sopra overlay */
 }
 
-.nav-toggle span {
+.nav-toggle span{
   display: block;
+  width: 22px;
   height: 2px;
-  width: 100%;
   background: #495b39;
   border-radius: 999px;
 }
 
-/* menu wrapper */
+/* wrapper menu */
 .nav-menu { display: block; }
 
 /* LINKS DESKTOP */
@@ -147,6 +156,100 @@ header {
 }
 
 .has-dropdown:hover .dropdown { display: block; }
+
+/* NAV MOBILE (overlay + accordion) */
+@media (max-width: 800px) {
+  .nav-toggle { display: inline-flex; }
+
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    padding: 84px 16px 22px; /* spazio per header */
+    background: rgba(253, 250, 247, 0.98);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid #eee0d0;
+    overflow: auto;
+
+    z-index: 10001;
+    display: none;
+  }
+
+  body.nav-open .nav-menu { display: block; }
+
+  /* blocca scroll dietro */
+  body.nav-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* lista verticale */
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .nav-links > li {
+    border: 1px solid #f0e1d2;
+    background: rgba(255,255,255,0.65);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .nav-links > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 14px;
+    border-bottom: none;
+  }
+
+  /* dropdown mobile: static e chiuso di default */
+  .dropdown {
+    position: static;
+    transform: none;
+    margin: 0;
+    border: none;
+    border-top: 1px solid #f0e1d2;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 8px 0;
+    display: none;
+    background: rgba(255,255,255,0.55);
+  }
+
+  .has-dropdown.open .dropdown { display: block; }
+
+  /* disabilita hover su mobile */
+  .has-dropdown:hover .dropdown { display: none; }
+
+  .dropdown li a {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  /* caret cambia */
+  .has-dropdown .nav-link-main::after { content: "▾"; }
+  .has-dropdown.open .nav-link-main::after { content: "▴"; }
+}
+
+/* DESKTOP: forza menu normale */
+@media (min-width: 801px) {
+  body.nav-open { overflow: visible; touch-action: auto; }
+
+  .nav-menu {
+    position: static;
+    display: block !important;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+  .nav-toggle { display: none !important; }
+}
 
 /* =========================
    HERO
@@ -485,15 +588,14 @@ main {
   margin: 0 14px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
+
 .timeline-title {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.timeline-title h3 {
-  margin: 0;
-}
+.timeline-title h3 { margin: 0; }
 
 .timeline-icon {
   width: 48px;
@@ -501,6 +603,7 @@ main {
   object-fit: contain;
   flex-shrink: 0;
 }
+
 .timeline-cta {
   width: 100%;
   display: flex;
@@ -733,7 +836,7 @@ main {
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE (layout generale)
    ========================= */
 @media (max-width: 1100px) {
   .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
@@ -760,76 +863,6 @@ main {
   .timeline-line { left: 16px; transform: none; }
   .timeline-item, .timeline-item.left, .timeline-item.right { justify-content: flex-start; margin-left: 10px; }
   .timeline-time-badge { margin: 0 10px 0 0; }
-
-  /* MOBILE MENU OVERLAY */
-  .nav-toggle { display: inline-flex; }
-
-  .nav-menu {
-    position: fixed;
-    inset: 0;
-    padding: 84px 16px 22px;         /* spazio per header */
-    background: rgba(253, 250, 247, 0.98);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid #eee0d0;
-    overflow: auto;
-    z-index: 9000;
-    display: none;
-  }
-
-  body.nav-open .nav-menu { display: block; }
-
-  /* lista verticale */
-  .nav-links {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    font-size: 16px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-  }
-
-  .nav-links > li {
-    border: 1px solid #f0e1d2;
-    background: rgba(255,255,255,0.65);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .nav-links > li > a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 14px;
-    border-bottom: none;
-  }
-
-  /* dropdown mobile: static e chiuso di default */
-  .dropdown {
-    position: static;
-    transform: none;
-    margin: 0;
-    border: none;
-    border-top: 1px solid #f0e1d2;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 8px 0;
-    display: none;
-    background: rgba(255,255,255,0.55);
-  }
-
-  .has-dropdown.open .dropdown { display: block; }
-
-  .dropdown li a {
-    padding: 12px 14px;
-    font-size: 15px;
-  }
-
-  /* su mobile disattiva hover che “apre subito” */
-  .has-dropdown:hover .dropdown { display: none; }
-
-  /* caret cambia */
-  .has-dropdown .nav-link-main::after { content: "▾"; }
-  .has-dropdown.open .nav-link-main::after { content: "▴"; }
 }
 
 @media (max-width: 700px) {
@@ -864,138 +897,4 @@ main {
 @media (max-width: 480px) {
   .gallery-item { flex-basis: 86%; }
   .gallery-item img { height: 420px; }
-}
-
-/* DESKTOP: forza menu normale */
-@media (min-width: 801px) {
-  .nav-menu { position: static; display: block !important; padding: 0; background: transparent; border: 0; }
-  .nav-toggle { display: none !important; }
-}
-
-/* =========================
-   NAV + MOBILE MENU (FIX iOS)
-   ========================= */
-
-/* hamburger: i 3 span devono stare in colonna */
-.nav-toggle{
-  display: none;              /* visibile solo in mobile via media query */
-  width: 44px;
-  height: 44px;
-  border: 1px solid #eee0d0;
-  background: rgba(255,255,255,0.75);
-  border-radius: 12px;
-  cursor: pointer;
-
-  /* QUESTO è il pezzo chiave per l'icona */
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  position: relative;
-  z-index: 10002; /* sopra tutto */
-}
-
-.nav-toggle span{
-  display:block;
-  width: 22px;
-  height: 2px;
-  background: #495b39;
-  border-radius: 999px;
-}
-/* FIX: icone timeline non giganti */
-
-/* se vuoi centrarla come nel layout */
-
-/* desktop: menu normale */
-@media (min-width: 801px) {
-  .nav-menu{
-    position: static !important;
-    display: block !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: 0 !important;
-  }
-  .nav-toggle{ display: none !important; }
-}
-
-/* mobile */
-@media (max-width: 800px) {
-
-  /* IMPORTANTISSIMO per iOS:
-     disattiva backdrop-filter sullo sticky header,
-     altrimenti il fixed del menu può non funzionare */
-  header{
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  .nav-toggle{ display: inline-flex !important; }
-
-  /* overlay menu */
-  .nav-menu{
-    position: fixed;
-    inset: 0;                         /* top/right/bottom/left:0 */
-    padding: 84px 16px 22px;          /* spazio per header */
-    background: rgba(253, 250, 247, 0.98);
-    border-top: 1px solid #eee0d0;
-    display: none;
-    overflow: auto;
-    z-index: 10001;                   /* sotto il bottone, sopra il resto */
-  }
-
-  body.nav-open .nav-menu{ display: block; }
-
-  /* lista verticale */
-  .nav-links{
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    font-size: 16px;
-    letter-spacing: 0.6px;
-  }
-
-  .nav-links > li{
-    border: 1px solid #f0e1d2;
-    background: rgba(255,255,255,0.65);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .nav-links > li > a{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 14px;
-    border-bottom: none;
-  }
-
-  /* dropdown mobile: static e si apre SOLO quando .open */
-  .dropdown{
-    position: static;
-    transform: none;
-    margin: 0;
-    border: none;
-    border-top: 1px solid #f0e1d2;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 8px 0;
-    display: none;
-    background: rgba(255,255,255,0.55);
-  }
-
-  .has-dropdown.open .dropdown{ display:block; }
-
-  /* disabilita hover su mobile */
-  .has-dropdown:hover .dropdown{ display:none; }
-
-  .dropdown li a{
-    padding: 12px 14px;
-    font-size: 15px;
-  }
-
-  /* caret up/down */
-  .has-dropdown .nav-link-main::after { content:"▾"; }
-  .has-dropdown.open .nav-link-main::after { content:"▴"; }
 }
