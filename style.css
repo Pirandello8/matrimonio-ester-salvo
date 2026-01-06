@@ -898,3 +898,25 @@ main {
   .gallery-item { flex-basis: 86%; }
   .gallery-item img { height: 420px; }
 }
+
+/* button come link */
+.nav-link-main{
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 6px 4px;
+  text-align: left;
+}
+
+/* in mobile deve comportarsi come riga piena */
+@media (max-width: 800px){
+  .nav-links > li > .nav-link-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 14px;
+  }
+}

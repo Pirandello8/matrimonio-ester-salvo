@@ -257,18 +257,27 @@
     if (!isOpen) closeMenu();
   });
 
-  dropdownLinks.forEach(a => {
-    a.addEventListener("click", (e) => {
-      if (window.matchMedia("(max-width: 800px)").matches) {
-        e.preventDefault();
-        const li = a.closest(".has-dropdown");
-        li.classList.toggle("open");
-        document.querySelectorAll(".has-dropdown").forEach(x => {
-          if (x !== li) x.classList.remove("open");
-        });
-      }
-    });
+ dropdownLinks.forEach(btnDrop => {
+  btnDrop.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      const li = btnDrop.closest(".has-dropdown");
+      const isOpen = li.classList.toggle("open");
+
+      // aggiorna aria
+      btnDrop.setAttribute("aria-expanded", String(isOpen));
+
+      // chiudi gli altri dropdown
+      document.querySelectorAll(".has-dropdown").forEach(x => {
+        if (x !== li) {
+          x.classList.remove("open");
+          const b = x.querySelector(":scope > .nav-link-main");
+          if (b) b.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
   });
+});
+
 
   document.addEventListener("click", (e) => {
     if (!document.body.classList.contains("nav-open")) return;
