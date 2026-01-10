@@ -209,34 +209,54 @@
     document.body.classList.remove("nav-open");
     btn.setAttribute("aria-expanded", "false");
     document.querySelectorAll(".has-dropdown.open").forEach(li => li.classList.remove("open"));
+
+    // reset aria-expanded sui dropdown
+    dropdownLinks.forEach(el => el.setAttribute("aria-expanded", "false"));
   }
 
+  // apri/chiudi menu hamburger
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    const isOpen = document.body.classList.toggle("nav-open");
-    btn.setAttribute("aria-expanded", String(isOpen));
-    if (!isOpen) closeMenu();
+    const isOpen = !document.body.classList.contains("nav-open");
+    if (isOpen) {
+      document.body.classList.add("nav-open");
+      btn.setAttribute("aria-expanded", "true");
+    } else {
+      closeMenu();
+    }
   });
 
-  dropdownLinks.forEach(a => {
-    a.addEventListener("click", (e) => {
-      if (window.matchMedia("(max-width: 800px)").matches) {
-        e.preventDefault();
-        const li = a.closest(".has-dropdown");
-        li.classList.toggle("open");
-        document.querySelectorAll(".has-dropdown").forEach(x => {
-          if (x !== li) x.classList.remove("open");
-        });
-      }
+  // apri/chiudi dropdown (solo mobile)
+  dropdownLinks.forEach(btnDrop => {
+    btnDrop.addEventListener("click", (e) => {
+      if (!window.matchMedia("(max-width: 800px)").matches) return;
+
+      // se btnDrop è un <a>, blocca navigazione
+      if (btnDrop.tagName.toLowerCase() === "a") e.preventDefault();
+
+      const li = btnDrop.closest(".has-dropdown");
+      const isOpen = li.classList.toggle("open");
+      btnDrop.setAttribute("aria-expanded", String(isOpen));
+
+      // chiudi gli altri
+      document.querySelectorAll(".has-dropdown").forEach(x => {
+        if (x !== li) {
+          x.classList.remove("open");
+          const b = x.querySelector(":scope > .nav-link-main");
+          if (b) b.setAttribute("aria-expanded", "false");
+        }
+      });
     });
   });
 
+  // click fuori: chiudi
   document.addEventListener("click", (e) => {
     if (!document.body.classList.contains("nav-open")) return;
     const clickedInside = menu.contains(e.target) || btn.contains(e.target);
     if (!clickedInside) closeMenu();
   });
 
+  // resize: se torni desktop chiudi
   window.addEventListener("resize", () => {
     if (!window.matchMedia("(max-width: 800px)").matches) closeMenu();
   });
