@@ -162,3 +162,144 @@
         <p>Ester: <a href="tel:+393206009122">+39 320 600 9122</a></p>
         <p>Salvo: <a href="tel:+393277792279">+39 327 779 2279</a></p>
         <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
+        <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Matrimonio</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dettagli.html">Dettagli del matrimonio</a></li>
+          <li><a href="dove-e-quando.html">Dove e quando</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Info utili</h4>
+        <ul>
+          <li><a href="lista-nozze.html">Lista nozze</a></li>
+          <li><a href="rsvp.html">Conferma presenza (RSVP)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p><span>Ester &amp; Salvo</span> · 8 Agosto 2026</p>
+    </div>
+  </footer>
+
+  <!-- COUNTDOWN -->
+  <script>
+    const weddingDate = new Date("2026-08-08T16:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      if (!daysEl) return;
+
+      if (diff <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "0";
+        minutesEl.textContent = "0";
+        secondsEl.textContent = "0";
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000);
+      const days = Math.floor(seconds / (3600 * 24));
+      const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = secs;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+  <!-- NAV MOBILE SCRIPT (stabile su telefono: usa click) -->
+  <script>
+  (function () {
+    const btn = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("navMenu");
+    if (!btn || !menu) return;
+
+    const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
+    const allDropdownLis = menu.querySelectorAll(".has-dropdown");
+    const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
+
+    function closeDropdowns() {
+      allDropdownLis.forEach(li => li.classList.remove("open"));
+      dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
+    }
+
+    function closeMenu() {
+      document.body.classList.remove("nav-open");
+      btn.setAttribute("aria-expanded", "false");
+      closeDropdowns();
+    }
+
+    // hamburger
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = !document.body.classList.contains("nav-open");
+      if (open) {
+        document.body.classList.add("nav-open");
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        closeMenu();
+      }
+    });
+
+    // dropdown (solo mobile)
+    dropdownButtons.forEach((b) => {
+      b.addEventListener("click", (e) => {
+        if (!isMobile()) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const li = b.closest(".has-dropdown");
+        const willOpen = !li.classList.contains("open");
+
+        closeDropdowns();
+        if (willOpen) {
+          li.classList.add("open");
+          b.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    // click su un link: chiudi
+    menu.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (isMobile()) closeMenu();
+      });
+    });
+
+    // click fuori: chiudi
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      const clickedInside = menu.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside) closeMenu();
+    });
+
+    // resize: se torni desktop chiudi
+    window.addEventListener("resize", () => {
+      if (!isMobile()) closeMenu();
+    });
+  })();
+  </script>
+</body>
+</html>
