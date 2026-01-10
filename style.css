@@ -21,7 +21,7 @@ body {
 a { text-decoration: none; color: inherit; }
 
 /* =========================
-   HEADER / NAV (pulita)
+   HEADER / NAV (PULITA)
    ========================= */
 header{
   position: sticky;
@@ -31,7 +31,7 @@ header{
   border-bottom: 1px solid #eee0d0;
 }
 
-/* blur SOLO desktop (più stabile su iOS con menu fixed) */
+/* blur SOLO desktop (più stabile su iOS con fixed overlay) */
 @media (min-width: 801px){
   header{
     backdrop-filter: blur(8px);
@@ -39,7 +39,7 @@ header{
   }
 }
 
-.nav {
+.nav{
   max-width: 1100px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -49,13 +49,13 @@ header{
   gap: 16px;
 }
 
-.nav-logo {
+.nav-logo{
   font-family: "Playfair Display", serif;
   font-size: 20px;
   font-weight: 700;
 }
 
-/* hamburger (base: nascosto, si mostra in mobile) */
+/* hamburger */
 .nav-toggle{
   display: none;
   width: 44px;
@@ -75,168 +75,41 @@ header{
 }
 
 .nav-toggle span{
-  display: block;
+  display:block;
   width: 22px;
   height: 2px;
   background: #495b39;
   border-radius: 999px;
 }
 
-/* wrapper menu */
-.nav-menu { display: block; }
+.nav-menu{ display:block; }
 
-/* LINKS DESKTOP */
-.nav-links {
-  display: flex;
+/* links desktop */
+.nav-links{
+  display:flex;
   gap: 18px;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  list-style: none;
-  align-items: center;
+  list-style:none;
+  align-items:center;
 }
 
-.nav-links > li { position: relative; }
+.nav-links > li{ position:relative; }
 
-.nav-links a {
+.nav-links a{
   padding: 6px 4px;
   border-bottom: 1px solid transparent;
 }
 
-.nav-links a:hover { border-color: var(--accent); }
+.nav-links a:hover{ border-color: var(--accent); }
 
-.nav-links .active {
+.nav-links a.active{
   border-color: var(--accent);
   font-weight: 600;
 }
 
-/* DROPDOWN DESKTOP */
-.has-dropdown .nav-link-main {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.has-dropdown .nav-link-main::after {
-  content: "▾";
-  font-size: 12px;
-  opacity: 0.75;
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  border: 1px solid #f0e1d2;
-  list-style: none;
-  padding: 8px 0;
-  min-width: 170px;
-  display: none;
-  z-index: 50;
-}
-
-.dropdown li a {
-  display: block;
-  padding: 7px 16px;
-  font-size: 13px;
-  text-transform: none;
-  letter-spacing: 0;
-  border-bottom: none;
-  color: #555;
-}
-
-.dropdown li a:hover {
-  background-color: #faf3e7;
-  color: #333;
-}
-
-.has-dropdown:hover .dropdown { display: block; }
-
-/* NAV MOBILE (overlay + accordion) */
-@media (max-width: 800px) {
-  .nav-toggle { display: inline-flex; }
-
-  .nav-menu {
-    position: fixed;
-    inset: 0;
-    padding: 84px 16px 22px; /* spazio per header */
-    background: rgba(253, 250, 247, 0.98);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid #eee0d0;
-    overflow: auto;
-
-    z-index: 10001;
-    display: none;
-  }
-
-  body.nav-open .nav-menu { display: block; }
-
-  /* blocca scroll dietro */
-  body.nav-open {
-    overflow: hidden;
-    touch-action: none;
-  }
-
-  /* lista verticale */
-  .nav-links {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    font-size: 16px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-  }
-
-  .nav-links > li {
-    border: 1px solid #f0e1d2;
-    background: rgba(255,255,255,0.65);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .nav-links > li > a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 14px;
-    border-bottom: none;
-  }
-
-  /* dropdown mobile: static e chiuso di default */
-  .dropdown {
-    position: static;
-    transform: none;
-    margin: 0;
-    border: none;
-    border-top: 1px solid #f0e1d2;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 8px 0;
-    display: none;
-    background: rgba(255,255,255,0.55);
-  }
-
-  .has-dropdown.open .dropdown { display: block; }
-
-  /* disabilita hover su mobile */
-  .has-dropdown:hover .dropdown { display: none; }
-
-  .dropdown li a {
-    padding: 12px 14px;
-    font-size: 15px;
-  }
-
-  /* caret cambia */
-  .has-dropdown .nav-link-main::after { content: "▾"; }
-  .has-dropdown.open .nav-link-main::after { content: "▴"; }
-}
-
+/* button dropdown come link */
 .nav-link-main{
   background: none;
   border: 0;
@@ -245,31 +118,149 @@ header{
   cursor: pointer;
   padding: 6px 4px;
   text-align: left;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
+.has-dropdown .nav-link-main::after{
+  content:"▾";
+  font-size: 12px;
+  opacity: .75;
+}
+
+/* dropdown desktop */
+.dropdown{
+  position:absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border: 1px solid #f0e1d2;
+  list-style:none;
+  padding: 8px 0;
+  min-width: 170px;
+  display:none;
+  z-index: 50;
+}
+
+.dropdown li a{
+  display:block;
+  padding: 7px 16px;
+  font-size: 13px;
+  text-transform:none;
+  letter-spacing:0;
+  border-bottom:none;
+  color:#555;
+}
+
+.dropdown li a:hover{
+  background-color:#faf3e7;
+  color:#333;
+}
+
+/* hover SOLO desktop */
+@media (min-width: 801px){
+  .has-dropdown:hover .dropdown{ display:block; }
+}
+
+/* =========================
+   NAV MOBILE
+   ========================= */
 @media (max-width: 800px){
-  .nav-links > li > .nav-link-main{
+  .nav-toggle{ display:inline-flex; }
+
+  .nav-menu{
+    position: fixed;
+    inset: 0;
+    padding: 84px 16px 22px; /* spazio per header */
+    background: rgba(253,250,247,0.98);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid #eee0d0;
+    overflow: auto;
+    z-index: 10001;
+    display: none;
+  }
+  body.nav-open .nav-menu{ display:block; }
+
+  /* blocca scroll dietro */
+  body.nav-open{
+    overflow:hidden;
+    touch-action:none;
+  }
+
+  .nav-links{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .nav-links > li{
+    border: 1px solid #f0e1d2;
+    background: rgba(255,255,255,0.65);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* riga cliccabile identica per <a> e <button> */
+  .nav-links > li > a,
+  .nav-links > li > button.nav-link-main{
     width: 100%;
-    display: flex;
+    display:flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:center;
     padding: 14px 14px;
+    border-bottom:none;
+  }
+
+  /* dropdown mobile: static e chiuso di default */
+  .dropdown{
+    position: static;
+    transform:none;
+    margin:0;
+    border:none;
+    border-top: 1px solid #f0e1d2;
+    box-shadow:none;
+    border-radius:0;
+    padding: 8px 0;
+    display:none;
+    background: rgba(255,255,255,0.55);
+  }
+  .has-dropdown.open .dropdown{ display:block; }
+
+  .dropdown li a{
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .has-dropdown.open .nav-link-main::after{ content:"▴"; }
+
+  /* touch */
+  .nav-menu, .nav-links, .nav-links *{
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 }
 
-
-/* DESKTOP: forza menu normale */
-@media (min-width: 801px) {
-  body.nav-open { overflow: visible; touch-action: auto; }
-
-  .nav-menu {
+/* desktop: forza menu normale */
+@media (min-width: 801px){
+  body.nav-open{ overflow: visible; touch-action: auto; }
+  .nav-menu{
     position: static;
-    display: block !important;
-    padding: 0;
-    background: transparent;
-    border: 0;
+    display:block !important;
+    padding:0;
+    background:transparent;
+    border:0;
   }
-  .nav-toggle { display: none !important; }
+  .nav-toggle{ display:none !important; }
 }
 
 /* =========================
@@ -449,7 +440,7 @@ main {
 .btn-ghost:hover { background-color: var(--accent-soft); }
 
 /* =========================
-   GALLERIA (desktop grid)
+   GALLERIA
    ========================= */
 .section-title {
   font-family: "Playfair Display", serif;
@@ -918,26 +909,4 @@ main {
 @media (max-width: 480px) {
   .gallery-item { flex-basis: 86%; }
   .gallery-item img { height: 420px; }
-}
-
-/* button come link */
-.nav-link-main{
-  background: none;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  padding: 6px 4px;
-  text-align: left;
-}
-
-/* in mobile deve comportarsi come riga piena */
-@media (max-width: 800px){
-  .nav-links > li > .nav-link-main{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 14px;
-  }
 }
