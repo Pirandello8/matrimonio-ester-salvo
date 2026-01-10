@@ -414,24 +414,29 @@ btnDoEdit.addEventListener("click", async () => {
 (function () {
   const btn = document.querySelector(".nav-toggle");
   const menu = document.getElementById("navMenu");
-  const dropdownLinks = document.querySelectorAll(".has-dropdown > .nav-link-main");
-
   if (!btn || !menu) return;
+
+  const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
+  const allDropdownLis = menu.querySelectorAll(".has-dropdown");
+  const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
+
+  function closeDropdowns() {
+    allDropdownLis.forEach(li => li.classList.remove("open"));
+    dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
+  }
 
   function closeMenu() {
     document.body.classList.remove("nav-open");
     btn.setAttribute("aria-expanded", "false");
-    document.querySelectorAll(".has-dropdown.open").forEach(li => li.classList.remove("open"));
-
-    // reset aria-expanded sui dropdown
-    dropdownLinks.forEach(el => el.setAttribute("aria-expanded", "false"));
+    closeDropdowns();
   }
 
-  // apri/chiudi menu hamburger
-  btn.addEventListener("click", (e) => {
+  // Hamburger toggle
+  btn.addEventListener("pointerup", (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    const isOpen = !document.body.classList.contains("nav-open");
-    if (isOpen) {
+    const open = !document.body.classList.contains("nav-open");
+    if (open) {
       document.body.classList.add("nav-open");
       btn.setAttribute("aria-expanded", "true");
     } else {
@@ -439,42 +444,46 @@ btnDoEdit.addEventListener("click", async () => {
     }
   });
 
-  // apri/chiudi dropdown (solo mobile)
-  dropdownLinks.forEach(btnDrop => {
-    btnDrop.addEventListener("click", (e) => {
-      if (!window.matchMedia("(max-width: 800px)").matches) return;
+  // Dropdown toggle (solo mobile)
+  dropdownButtons.forEach((b) => {
+    b.addEventListener("pointerup", (e) => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      e.stopPropagation();
 
-      // se btnDrop è un <a>, blocca navigazione
-      if (btnDrop.tagName.toLowerCase() === "a") e.preventDefault();
+      const li = b.closest(".has-dropdown");
+      const willOpen = !li.classList.contains("open");
 
-      const li = btnDrop.closest(".has-dropdown");
-      const isOpen = li.classList.toggle("open");
-      btnDrop.setAttribute("aria-expanded", String(isOpen));
-
-      // chiudi gli altri
-      document.querySelectorAll(".has-dropdown").forEach(x => {
-        if (x !== li) {
-          x.classList.remove("open");
-          const b = x.querySelector(":scope > .nav-link-main");
-          if (b) b.setAttribute("aria-expanded", "false");
-        }
-      });
+      // chiudi tutti e poi apri solo quello richiesto
+      closeDropdowns();
+      if (willOpen) {
+        li.classList.add("open");
+        b.setAttribute("aria-expanded", "true");
+      }
     });
   });
 
-  // click fuori: chiudi
-  document.addEventListener("click", (e) => {
+  // Se clicchi un link (anche dentro dropdown), chiudi tutto
+  menu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("pointerup", () => {
+      if (isMobile()) closeMenu();
+    });
+  });
+
+  // Click fuori: chiudi
+  document.addEventListener("pointerup", (e) => {
     if (!document.body.classList.contains("nav-open")) return;
     const clickedInside = menu.contains(e.target) || btn.contains(e.target);
     if (!clickedInside) closeMenu();
   });
 
-  // resize: se torni desktop chiudi
+  // Se passi a desktop, chiudi overlay e dropdown
   window.addEventListener("resize", () => {
-    if (!window.matchMedia("(max-width: 800px)").matches) closeMenu();
+    if (!isMobile()) closeMenu();
   });
 })();
 </script>
+
 
 
 </body>
