@@ -237,6 +237,27 @@ header{
   .has-dropdown.open .nav-link-main::after { content: "▴"; }
 }
 
+.nav-link-main{
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 6px 4px;
+  text-align: left;
+}
+
+@media (max-width: 800px){
+  .nav-links > li > .nav-link-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 14px;
+  }
+}
+
+
 /* DESKTOP: forza menu normale */
 @media (min-width: 801px) {
   body.nav-open { overflow: visible; touch-action: auto; }

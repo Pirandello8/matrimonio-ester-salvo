@@ -29,22 +29,27 @@
       <li><a href="index.html">Home</a></li>
 
       <li class="has-dropdown">
-        <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
-        <ul class="dropdown">
-          <li><a href="dove-e-quando.html">Dove e quando</a></li>
-          <li><a href="timeline.html">Timeline</a></li>
-        </ul>
-      </li>
+  <button type="button" class="nav-link-main" aria-expanded="false">
+    Informazioni
+  </button>
+  <ul class="dropdown">
+    <li><a href="dove-e-quando.html">Dove e quando</a></li>
+    <li><a href="timeline.html">Timeline</a></li>
+  </ul>
+</li>
 
-      <li class="has-dropdown">
-        <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
-        <ul class="dropdown">
-          <li><a href="ristoranti.html">Ristoranti</a></li>
-          <li><a href="bar.html">Bar</a></li>
-          <li><a href="luoghi.html">Luoghi da visitare</a></li>
-          <li><a href="come-arrivare.html">Come arrivare</a></li>
-        </ul>
-      </li>
+<li class="has-dropdown">
+  <button type="button" class="nav-link-main" aria-expanded="false">
+    Info su Licata
+  </button>
+  <ul class="dropdown">
+    <li><a href="ristoranti.html">Ristoranti</a></li>
+    <li><a href="bar.html">Bar</a></li>
+    <li><a href="luoghi.html">Luoghi da visitare</a></li>
+    <li><a href="come-arrivare.html">Come arrivare</a></li>
+  </ul>
+</li>
+
 
       <li><a href="rsvp.html">RSVP</a></li>
       <li><a href="lista-nozze.html">Lista nozze</a></li>
@@ -248,25 +253,36 @@
     document.body.classList.remove("nav-open");
     btn.setAttribute("aria-expanded", "false");
     document.querySelectorAll(".has-dropdown.open").forEach(li => li.classList.remove("open"));
+
+    // reset aria-expanded sui dropdown
+    dropdownLinks.forEach(el => el.setAttribute("aria-expanded", "false"));
   }
 
+  // apri/chiudi menu hamburger
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    const isOpen = document.body.classList.toggle("nav-open");
-    btn.setAttribute("aria-expanded", String(isOpen));
-    if (!isOpen) closeMenu();
+    const isOpen = !document.body.classList.contains("nav-open");
+    if (isOpen) {
+      document.body.classList.add("nav-open");
+      btn.setAttribute("aria-expanded", "true");
+    } else {
+      closeMenu();
+    }
   });
 
- dropdownLinks.forEach(btnDrop => {
-  btnDrop.addEventListener("click", () => {
-    if (window.matchMedia("(max-width: 800px)").matches) {
+  // apri/chiudi dropdown (solo mobile)
+  dropdownLinks.forEach(btnDrop => {
+    btnDrop.addEventListener("click", (e) => {
+      if (!window.matchMedia("(max-width: 800px)").matches) return;
+
+      // se btnDrop è un <a>, blocca navigazione
+      if (btnDrop.tagName.toLowerCase() === "a") e.preventDefault();
+
       const li = btnDrop.closest(".has-dropdown");
       const isOpen = li.classList.toggle("open");
-
-      // aggiorna aria
       btnDrop.setAttribute("aria-expanded", String(isOpen));
 
-      // chiudi gli altri dropdown
+      // chiudi gli altri
       document.querySelectorAll(".has-dropdown").forEach(x => {
         if (x !== li) {
           x.classList.remove("open");
@@ -274,17 +290,17 @@
           if (b) b.setAttribute("aria-expanded", "false");
         }
       });
-    }
+    });
   });
-});
 
-
+  // click fuori: chiudi
   document.addEventListener("click", (e) => {
     if (!document.body.classList.contains("nav-open")) return;
     const clickedInside = menu.contains(e.target) || btn.contains(e.target);
     if (!clickedInside) closeMenu();
   });
 
+  // resize: se torni desktop chiudi
   window.addEventListener("resize", () => {
     if (!window.matchMedia("(max-width: 800px)").matches) closeMenu();
   });
