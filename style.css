@@ -910,3 +910,8 @@ main {
   .gallery-item { flex-basis: 86%; }
   .gallery-item img { height: 420px; }
 }
+
+@media (max-width: 800px) {
+  header { z-index: 9999; }
+  .nav-menu { z-index: 10001; }
+}
