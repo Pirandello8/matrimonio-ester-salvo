@@ -4,43 +4,69 @@
   <meta charset="UTF-8" />
   <title>RSVP – Ester &amp; Salvo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 
-  <!-- NOTA: questo style duplica molte regole già nel tuo style.css.
-       Funziona, ma se vuoi uniformità totale conviene spostarlo nel CSS unico. -->
+  <!-- SOLO stili specifici del form RSVP (niente header/nav/btn globali) -->
   <style>
-    :root { --bg:#fdfaf7; --accent:#c9a27c; --accent-soft:#f1e1cf; --text-main:#333; --text-light:#666; --white:#fff; }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:"Nunito",system-ui;background-color:var(--bg);color:var(--text-main);line-height:1.6;}
-    a{text-decoration:none;color:inherit;}
-    header{position:sticky;top:0;z-index:100;background-color:rgba(253,250,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee0d0;}
-    .nav{max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;letter-spacing:1px;}
-    .nav-links{display:flex;gap:18px;font-size:14px;text-transform:uppercase;letter-spacing:1px; list-style:none;}
-    .nav-links a{padding-bottom:2px;border-bottom:1px solid transparent;}
-    .nav-links a:hover{border-color:var(--accent);}
-    .nav-links .active{border-color:var(--accent);font-weight:600;}
-    main{max-width:900px;margin:0 auto;padding:40px 20px 60px;}
-    .page-title{text-align:center;font-family:"Playfair Display",serif;font-size:30px;margin-bottom:10px;}
-    .page-subtitle{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:30px;}
-    .rsvp-form{background:#fff;border-radius:20px;padding:22px 18px 24px;border:1px solid #f0e1d2;box-shadow:0 10px 22px rgba(0,0,0,0.03);font-size:14px;max-width:600px;margin:0 auto;}
-    .form-row{margin-bottom:12px;}
-    label{display:block;font-size:13px;margin-bottom:4px;}
-    input[type="text"],input[type="email"],select,textarea{
-      width:100%;padding:9px 10px;border-radius:10px;border:1px solid #e0cdb7;font-size:14px;font-family:inherit;background-color:#fdfaf7;
+    .rsvp-form{
+      background:#fff;
+      border-radius:20px;
+      padding:22px 18px 24px;
+      border:1px solid #f0e1d2;
+      box-shadow:0 10px 22px rgba(0,0,0,0.03);
+      font-size:14px;
+      max-width:600px;
+      margin:0 auto;
     }
-    textarea{min-height:70px;resize:vertical;}
-    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);background-color:#fff;}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:999px;font-size:14px;border:1px solid var(--accent);cursor:pointer;transition:all 0.2s ease;background-color:var(--accent);color:#fff;width:100%;margin-top:6px;}
-    .btn:hover{filter:brightness(1.05);transform:translateY(-1px);}
-    .note{margin-top:10px;font-size:12px;color:var(--text-light);text-align:center;}
 
-    label.required::after {
-      content: " *";
-      color: #c0392b;
-      font-weight: 600;
+    .form-row{ margin-bottom:12px; }
+
+    label{ display:block; font-size:13px; margin-bottom:4px; }
+
+    input[type="text"],input[type="email"],select,textarea{
+      width:100%;
+      padding:9px 10px;
+      border-radius:10px;
+      border:1px solid #e0cdb7;
+      font-size:14px;
+      font-family:inherit;
+      background-color:#fdfaf7;
     }
+
+    textarea{ min-height:70px; resize:vertical; }
+
+    input:focus,select:focus,textarea:focus{
+      outline:none;
+      border-color: var(--accent);
+      background-color:#fff;
+    }
+
+    /* nel form i bottoni full-width */
+    .rsvp-form .btn{
+      width:100%;
+      margin-top:6px;
+    }
+
+    .note{
+      margin-top:10px;
+      font-size:12px;
+      color: var(--text-light);
+      text-align:center;
+    }
+
+    label.required::after{
+      content:" *";
+      color:#c0392b;
+      font-weight:600;
+    }
+
+    .page-title,
+.page-subtitle{
+  text-align: center;
+}
+
   </style>
 </head>
 
@@ -159,7 +185,12 @@
 
         <p class="note">Ti invieremo una email di conferma.</p>
 
-        <button type="button" id="requestOtp" class="btn" style="background:#fff;color:#c9a27c;">
+        <button
+          type="button"
+          id="requestOtp"
+          class="btn"
+          style="background:#fff;color:var(--accent);"
+        >
           Modifica la mia risposta (ricevi codice)
         </button>
         <p class="note">Ti invieremo un codice via email per modificare la tua RSVP.</p>
@@ -361,7 +392,7 @@
   });
   </script>
 
-  <!-- SCRIPT NAVBAR (stabile: click) -->
+  <!-- SCRIPT NAVBAR (click, e quando chiudi menu chiude SEMPRE anche i dropdown) -->
   <script>
   (function () {
     const btn = document.querySelector(".nav-toggle");
@@ -377,6 +408,12 @@
       dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
     }
 
+    function openMenu() {
+      document.body.classList.add("nav-open");
+      btn.setAttribute("aria-expanded", "true");
+      closeDropdowns(); // <- importante: quando apri riparti pulito
+    }
+
     function closeMenu() {
       document.body.classList.remove("nav-open");
       btn.setAttribute("aria-expanded", "false");
@@ -386,13 +423,9 @@
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const open = !document.body.classList.contains("nav-open");
-      if (open) {
-        document.body.classList.add("nav-open");
-        btn.setAttribute("aria-expanded", "true");
-      } else {
-        closeMenu();
-      }
+      const willOpen = !document.body.classList.contains("nav-open");
+      if (willOpen) openMenu();
+      else closeMenu();
     });
 
     dropdownButtons.forEach((b) => {
