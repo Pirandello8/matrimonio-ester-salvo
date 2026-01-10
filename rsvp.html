@@ -2,11 +2,13 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>RSVP –Ester & Salvo</title>
+  <title>RSVP – Ester &amp; Salvo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 
+  <!-- NOTA: questo style duplica molte regole già nel tuo style.css.
+       Funziona, ma se vuoi uniformità totale conviene spostarlo nel CSS unico. -->
   <style>
     :root { --bg:#fdfaf7; --accent:#c9a27c; --accent-soft:#f1e1cf; --text-main:#333; --text-light:#666; --white:#fff; }
     *{box-sizing:border-box;margin:0;padding:0;}
@@ -15,7 +17,7 @@
     header{position:sticky;top:0;z-index:100;background-color:rgba(253,250,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee0d0;}
     .nav{max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
     .nav-logo{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;letter-spacing:1px;}
-    .nav-links{display:flex;gap:18px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+    .nav-links{display:flex;gap:18px;font-size:14px;text-transform:uppercase;letter-spacing:1px; list-style:none;}
     .nav-links a{padding-bottom:2px;border-bottom:1px solid transparent;}
     .nav-links a:hover{border-color:var(--accent);}
     .nav-links .active{border-color:var(--accent);font-weight:600;}
@@ -34,82 +36,84 @@
     .btn:hover{filter:brightness(1.05);transform:translateY(-1px);}
     .note{margin-top:10px;font-size:12px;color:var(--text-light);text-align:center;}
 
-    /* Asterisco per campi obbligatori */
-  label.required::after {
-  content: " *";
-  color: #c0392b;
-  font-weight: 600;
-}
-
+    label.required::after {
+      content: " *";
+      color: #c0392b;
+      font-weight: 600;
+    }
   </style>
 </head>
+
 <body>
- <header>
-   <nav class="nav">
-  <div class="nav-logo">Ester &amp; Salvo</div>
+  <header>
+    <nav class="nav">
+      <div class="nav-logo">Ester &amp; Salvo</div>
 
-  <!-- HAMBURGER (solo mobile) -->
-  <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Apri menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- MENU -->
-  <div class="nav-menu" id="navMenu">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
 
-      <li class="has-dropdown">
-        <a href="dove-e-quando.html" class="nav-link-main">Informazioni</a>
-        <ul class="dropdown">
-          <li><a href="dove-e-quando.html">Dove e quando</a></li>
-          <li><a href="timeline.html">Timeline</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="nav-link-main" aria-expanded="false">
+              Informazioni
+            </button>
+            <ul class="dropdown">
+              <li><a href="dove-e-quando.html">Dove e quando</a></li>
+              <li><a href="timeline.html">Timeline</a></li>
+            </ul>
+          </li>
+
+          <li class="has-dropdown">
+            <button type="button" class="nav-link-main" aria-expanded="false">
+              Info su Licata
+            </button>
+            <ul class="dropdown">
+              <li><a href="ristoranti.html">Ristoranti</a></li>
+              <li><a href="bar.html">Bar</a></li>
+              <li><a href="luoghi.html">Luoghi da visitare</a></li>
+              <li><a href="come-arrivare.html">Come arrivare</a></li>
+            </ul>
+          </li>
+
+          <li><a class="active" href="rsvp.html">RSVP</a></li>
+          <li><a href="lista-nozze.html">Lista nozze</a></li>
         </ul>
-      </li>
-
-      <li class="has-dropdown">
-        <a href="ristoranti.html" class="nav-link-main">Info su Licata</a>
-        <ul class="dropdown">
-          <li><a href="ristoranti.html">Ristoranti</a></li>
-          <li><a href="bar.html">Bar</a></li>
-          <li><a href="luoghi.html">Luoghi da visitare</a></li>
-          <li><a href="come-arrivare.html">Come arrivare</a></li>
-        </ul>
-      </li>
-
-      <li><a href="rsvp.html">RSVP</a></li>
-      <li><a href="lista-nozze.html">Lista nozze</a></li>
-    </ul>
-  </div>
-</nav>
-
+      </div>
+    </nav>
   </header>
 
-
   <main>
-
-    
     <h1 class="page-title">Conferma la tua presenza</h1>
     <p class="page-subtitle">
       Ti chiediamo gentilmente di confermare entro una certa data, così possiamo organizzarci al meglio.
     </p>
 
-    <!-- per ora il form non invia realmente (action vuoto) -->
     <form id="rsvpForm" class="rsvp-form">
+      <div class="form-row">
+        <label for="nome" class="required">Nome</label>
+        <input type="text" id="nome" name="nome" required />
+      </div>
 
       <div class="form-row">
-  <label for="nome" class="required">Nome</label>
-  <input type="text" id="nome" name="nome" required />
-</div>
+        <label for="cognome" class="required">Cognome</label>
+        <input type="text" id="cognome" name="cognome" required />
+      </div>
 
-  <div class="form-row">
-    <label for="cognome" class="required">Cognome</label>
-    <input type="text" id="cognome" name="cognome" required />
-    </div>
+      <div class="form-row">
+        <label for="email" class="required">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
 
-  <div class="form-row">
-    <label for="email" class="required">Email</label>
-    <input type="email" id="email" name="email" required />
-  </div>
       <div class="form-row">
         <label for="presenza" class="required">Parteciperai?</label>
         <select id="presenza" name="presenza" required>
@@ -120,26 +124,18 @@
       </div>
 
       <div class="form-row">
-  <label for="ospiti" class="required"> Numero di persone (incluso te)</label>
-  <select id="ospiti" name="ospiti" required>
-    <option value="">Seleziona</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-  </select>
-</div>
-
-   
+        <label for="ospiti" class="required">Numero di persone (incluso te)</label>
+        <select id="ospiti" name="ospiti" required>
+          <option value="">Seleziona</option>
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+          <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
 
       <div class="form-row">
-        <label for="autobus" class="required"> Vuoi prendere l’autobus dalla chiesa al ristorante?</label>
+        <label for="autobus" class="required">Vuoi prendere l’autobus dalla chiesa al ristorante?</label>
         <select id="autobus" name="autobus" required>
           <option value="">Seleziona una opzione</option>
           <option value="si">Sì, desidero l’autobus</option>
@@ -152,45 +148,39 @@
         <label for="intolleranze">Allergie o intolleranze alimentari</label>
         <textarea id="intolleranze" name="intolleranze" placeholder="Segnalaci eventuali esigenze particolari"></textarea>
       </div>
+
       <div class="form-row">
         <label for="messaggio">Un messaggio per noi (facoltativo)</label>
         <textarea id="messaggio" name="messaggio" placeholder="Scrivici qualcosa, se ti va 😊"></textarea>
       </div>
+
       <div class="form-row">
+        <button type="button" id="doSubmit" class="btn">Invia conferma</button>
 
-        <button type="button" id="doSubmit" class="btn">
-  Invia conferma
-</button>
+        <p class="note">Ti invieremo una email di conferma.</p>
 
-      <p class="note">
-        Ti invieremo una email di conferma.
-      </p>
-  <button type="button" id="requestOtp" class="btn" style="background:#fff;color:#c9a27c;">
-    Modifica la mia risposta (ricevi codice)
-  </button>
-  <p class="note">Ti invieremo un codice via email per modificare la tua RSVP.</p>
-</div>
+        <button type="button" id="requestOtp" class="btn" style="background:#fff;color:#c9a27c;">
+          Modifica la mia risposta (ricevi codice)
+        </button>
+        <p class="note">Ti invieremo un codice via email per modificare la tua RSVP.</p>
+      </div>
 
-<div class="form-row" id="otpRow" style="display:none;">
-  <label for="otp">Codice ricevuto via email</label>
-  <input type="text" id="otp" name="otp" placeholder="Es. 123456" />
-  <button type="button" id="doEdit" class="btn">Aggiorna la mia RSVP</button>
-</div>
-
-
-      
+      <div class="form-row" id="otpRow" style="display:none;">
+        <label for="otp">Codice ricevuto via email</label>
+        <input type="text" id="otp" name="otp" placeholder="Es. 123456" />
+        <button type="button" id="doEdit" class="btn">Aggiorna la mia RSVP</button>
+      </div>
     </form>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-col">
         <h4 class="footer-title">Contatti</h4>
-     <p>Ester: <a href="tel:+39320 600 9122">+39 320 600 9122</a></p>
-        <p>Salvo: <a href="tel:+39327 779 2279">+39 327 779 2279</a></p>
-      <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
-      <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
-
+        <p>Ester: <a href="tel:+393206009122">+39 320 600 9122</a></p>
+        <p>Salvo: <a href="tel:+393277792279">+39 327 779 2279</a></p>
+        <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
+        <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
       </div>
 
       <div class="footer-col">
@@ -198,7 +188,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="dove-e-quando.html">Informazioni</a></li>
-          <li><a href="rsvp.html">RSVP</a></li>
+          <li><a class="active" href="rsvp.html">RSVP</a></li>
           <li><a href="lista-nozze.html">Lista nozze</a></li>
         </ul>
       </div>
@@ -217,274 +207,227 @@
     </div>
   </footer>
 
-<!-- SCRIPT RSVP -->
-<!-- SCRIPT RSVP -->
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmM0cXgOLHtxGhDqvgobfEWX8YP0yhR7I7AZqy217Eyk2JYTvP8aIRXZ3TaJ23Uvyy/exec";
+  <!-- SCRIPT RSVP (il tuo, invariato) -->
+  <script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmM0cXgOLHtxGhDqvgobfEWX8YP0yhR7I7AZqy217Eyk2JYTvP8aIRXZ3TaJ23Uvyy/exec";
 
-const form = document.getElementById("rsvpForm");
+  const form = document.getElementById("rsvpForm");
 
-const btnFinalSubmit = document.getElementById("doSubmit");
-const btnRequestOtp  = document.getElementById("requestOtp");
-const otpRow         = document.getElementById("otpRow");
-const btnDoEdit      = document.getElementById("doEdit");
+  const btnFinalSubmit = document.getElementById("doSubmit");
+  const btnRequestOtp  = document.getElementById("requestOtp");
+  const otpRow         = document.getElementById("otpRow");
+  const btnDoEdit      = document.getElementById("doEdit");
 
-const presenzaEl = document.getElementById("presenza");
-const ospitiEl   = document.getElementById("ospiti");
-const autobusEl  = document.getElementById("autobus");
-const intEl      = document.getElementById("intolleranze");
-const msgEl      = document.getElementById("messaggio");
+  const presenzaEl = document.getElementById("presenza");
+  const ospitiEl   = document.getElementById("ospiti");
+  const autobusEl  = document.getElementById("autobus");
+  const intEl      = document.getElementById("intolleranze");
+  const msgEl      = document.getElementById("messaggio");
 
-function syncRequiredLabels() {
-  document
-    .querySelectorAll("input, select, textarea")
-    .forEach(el => {
-      const label = document.querySelector(`label[for="${el.id}"]`);
-      if (!label) return;
+  function syncRequiredLabels() {
+    document
+      .querySelectorAll("input, select, textarea")
+      .forEach(el => {
+        const label = document.querySelector(`label[for="${el.id}"]`);
+        if (!label) return;
 
-      if (el.required && !el.disabled) {
-        label.classList.add("required");
-      } else {
-        label.classList.remove("required");
-      }
-    });
-}
-
-
-function setDisabled(el, disabled) {
-  el.disabled = disabled;
-  el.style.opacity = disabled ? "0.6" : "1";
-}
-
-function handlePresenzaChange() {
-  const isNo = presenzaEl.value === "no";
-
-  if (isNo) {
-    // svuota e disabilita campi che non hanno senso
-    ospitiEl.value = "";
-    autobusEl.value = "";
-    intEl.value = "";
-    msgEl.value = "";
-
-    setDisabled(ospitiEl, true);
-    setDisabled(autobusEl, true);
-    setDisabled(intEl, true);
-    setDisabled(msgEl, true);
-
-    // se non partecipa, non devono essere required
-    ospitiEl.required = false;
-    autobusEl.required = false;
-  } else {
-    setDisabled(ospitiEl, false);
-    setDisabled(autobusEl, false);
-    setDisabled(intEl, false);
-    setDisabled(msgEl, false);
-
-    // se partecipa, tornano obbligatori
-    ospitiEl.required = true;
-    autobusEl.required = true;
-  }
-   syncRequiredLabels();
-}
-
-function syncRequiredLabels() {
-  document
-    .querySelectorAll("input, select, textarea")
-    .forEach(el => {
-      const label = document.querySelector(`label[for="${el.id}"]`);
-      if (!label) return;
-
-      if (el.required && !el.disabled) {
-        label.classList.add("required");
-      } else {
-        label.classList.remove("required");
-      }
-    });
-}
-
-presenzaEl.addEventListener("change", handlePresenzaChange);
-handlePresenzaChange(); // esegui subito all’avvio
-syncRequiredLabels();
-
-
-async function postForm(action) {
-  // Usa urlencoded per evitare preflight CORS
-  const data = new URLSearchParams();
-  new FormData(form).forEach((value, key) => data.append(key, value));
-  data.append("action", action);
-
-  const res = await fetch(SCRIPT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-    body: data.toString()
-  });
-
-  const text = await res.text();
-
-  try {
-    return JSON.parse(text);
-  } catch (e) {
-    console.error("Risposta non JSON:", text);
-    throw new Error("Risposta non valida dal server (non JSON).");
-  }
-}
-
-// INVIO PRIMA RISPOSTA
-btnFinalSubmit.addEventListener("click", async () => {
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-  btnFinalSubmit.disabled = true;
-
-  try {
-    const out = await postForm("submit");
-
-    if (!out.ok) {
-      if (out.code === "ALREADY_SUBMITTED") {
-        alert(out.error);
-        otpRow.style.display = "block";
-      } else {
-        alert("Errore: " + (out.error || "sconosciuto"));
-      }
-      return;
-    }
-
-    alert("Conferma inviata ✅ Controlla la tua email");
-    form.reset();
-    otpRow.style.display = "none";
-
-  } catch (err) {
-    console.error(err);
-    alert("Errore: " + err.message);
-  } finally {
-    btnFinalSubmit.disabled = false;
-  }
-});
-
-// RICHIESTA CODICE MODIFICA
-btnRequestOtp.addEventListener("click", async () => {
-  btnRequestOtp.disabled = true;
-
-  try {
-    const out = await postForm("request_edit");
-
-    if (!out.ok) {
-      alert("Errore: " + (out.error || "sconosciuto"));
-      return;
-    }
-
-    alert(out.message || "Codice inviato ✅");
-    otpRow.style.display = "block";
-
-  } catch (err) {
-    console.error(err);
-    alert("Errore: " + err.message);
-  } finally {
-    btnRequestOtp.disabled = false;
-  }
-});
-
-// MODIFICA RISPOSTA CON OTP
-btnDoEdit.addEventListener("click", async () => {
-  btnDoEdit.disabled = true;
-
-  try {
-    const out = await postForm("edit");
-
-    if (!out.ok) {
-      alert("Errore: " + (out.error || "sconosciuto"));
-      return;
-    }
-
-    alert("Risposta aggiornata ✅");
-    form.reset();
-    otpRow.style.display = "none";
-
-  } catch (err) {
-    console.error(err);
-    alert("Errore: " + err.message);
-  } finally {
-    btnDoEdit.disabled = false;
-  }
-});
-</script>
-
-<script>
-(function () {
-  const btn = document.querySelector(".nav-toggle");
-  const menu = document.getElementById("navMenu");
-  if (!btn || !menu) return;
-
-  const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
-  const allDropdownLis = menu.querySelectorAll(".has-dropdown");
-  const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
-
-  function closeDropdowns() {
-    allDropdownLis.forEach(li => li.classList.remove("open"));
-    dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
+        if (el.required && !el.disabled) label.classList.add("required");
+        else label.classList.remove("required");
+      });
   }
 
-  function closeMenu() {
-    document.body.classList.remove("nav-open");
-    btn.setAttribute("aria-expanded", "false");
-    closeDropdowns();
+  function setDisabled(el, disabled) {
+    el.disabled = disabled;
+    el.style.opacity = disabled ? "0.6" : "1";
   }
 
-  // Hamburger toggle
-  btn.addEventListener("pointerup", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const open = !document.body.classList.contains("nav-open");
-    if (open) {
-      document.body.classList.add("nav-open");
-      btn.setAttribute("aria-expanded", "true");
+  function handlePresenzaChange() {
+    const isNo = presenzaEl.value === "no";
+
+    if (isNo) {
+      ospitiEl.value = "";
+      autobusEl.value = "";
+      intEl.value = "";
+      msgEl.value = "";
+
+      setDisabled(ospitiEl, true);
+      setDisabled(autobusEl, true);
+      setDisabled(intEl, true);
+      setDisabled(msgEl, true);
+
+      ospitiEl.required = false;
+      autobusEl.required = false;
     } else {
-      closeMenu();
+      setDisabled(ospitiEl, false);
+      setDisabled(autobusEl, false);
+      setDisabled(intEl, false);
+      setDisabled(msgEl, false);
+
+      ospitiEl.required = true;
+      autobusEl.required = true;
+    }
+
+    syncRequiredLabels();
+  }
+
+  presenzaEl.addEventListener("change", handlePresenzaChange);
+  handlePresenzaChange();
+  syncRequiredLabels();
+
+  async function postForm(action) {
+    const data = new URLSearchParams();
+    new FormData(form).forEach((value, key) => data.append(key, value));
+    data.append("action", action);
+
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body: data.toString()
+    });
+
+    const text = await res.text();
+    try { return JSON.parse(text); }
+    catch (e) { console.error("Risposta non JSON:", text); throw new Error("Risposta non valida dal server (non JSON)."); }
+  }
+
+  btnFinalSubmit.addEventListener("click", async () => {
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btnFinalSubmit.disabled = true;
+
+    try {
+      const out = await postForm("submit");
+
+      if (!out.ok) {
+        if (out.code === "ALREADY_SUBMITTED") {
+          alert(out.error);
+          otpRow.style.display = "block";
+        } else {
+          alert("Errore: " + (out.error || "sconosciuto"));
+        }
+        return;
+      }
+
+      alert("Conferma inviata ✅ Controlla la tua email");
+      form.reset();
+      otpRow.style.display = "none";
+      handlePresenzaChange();
+
+    } catch (err) {
+      console.error(err);
+      alert("Errore: " + err.message);
+    } finally {
+      btnFinalSubmit.disabled = false;
     }
   });
 
-  // Dropdown toggle (solo mobile)
-  dropdownButtons.forEach((b) => {
-    b.addEventListener("pointerup", (e) => {
-      if (!isMobile()) return;
+  btnRequestOtp.addEventListener("click", async () => {
+    btnRequestOtp.disabled = true;
+
+    try {
+      const out = await postForm("request_edit");
+
+      if (!out.ok) { alert("Errore: " + (out.error || "sconosciuto")); return; }
+
+      alert(out.message || "Codice inviato ✅");
+      otpRow.style.display = "block";
+
+    } catch (err) {
+      console.error(err);
+      alert("Errore: " + err.message);
+    } finally {
+      btnRequestOtp.disabled = false;
+    }
+  });
+
+  btnDoEdit.addEventListener("click", async () => {
+    btnDoEdit.disabled = true;
+
+    try {
+      const out = await postForm("edit");
+
+      if (!out.ok) { alert("Errore: " + (out.error || "sconosciuto")); return; }
+
+      alert("Risposta aggiornata ✅");
+      form.reset();
+      otpRow.style.display = "none";
+      handlePresenzaChange();
+
+    } catch (err) {
+      console.error(err);
+      alert("Errore: " + err.message);
+    } finally {
+      btnDoEdit.disabled = false;
+    }
+  });
+  </script>
+
+  <!-- SCRIPT NAVBAR (stabile: click) -->
+  <script>
+  (function () {
+    const btn = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("navMenu");
+    if (!btn || !menu) return;
+
+    const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
+    const allDropdownLis = menu.querySelectorAll(".has-dropdown");
+    const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
+
+    function closeDropdowns() {
+      allDropdownLis.forEach(li => li.classList.remove("open"));
+      dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
+    }
+
+    function closeMenu() {
+      document.body.classList.remove("nav-open");
+      btn.setAttribute("aria-expanded", "false");
+      closeDropdowns();
+    }
+
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-
-      const li = b.closest(".has-dropdown");
-      const willOpen = !li.classList.contains("open");
-
-      // chiudi tutti e poi apri solo quello richiesto
-      closeDropdowns();
-      if (willOpen) {
-        li.classList.add("open");
-        b.setAttribute("aria-expanded", "true");
+      const open = !document.body.classList.contains("nav-open");
+      if (open) {
+        document.body.classList.add("nav-open");
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        closeMenu();
       }
     });
-  });
 
-  // Se clicchi un link (anche dentro dropdown), chiudi tutto
-  menu.querySelectorAll("a").forEach(a => {
-    a.addEventListener("pointerup", () => {
-      if (isMobile()) closeMenu();
+    dropdownButtons.forEach((b) => {
+      b.addEventListener("click", (e) => {
+        if (!isMobile()) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const li = b.closest(".has-dropdown");
+        const willOpen = !li.classList.contains("open");
+
+        closeDropdowns();
+        if (willOpen) {
+          li.classList.add("open");
+          b.setAttribute("aria-expanded", "true");
+        }
+      });
     });
-  });
 
-  // Click fuori: chiudi
-  document.addEventListener("pointerup", (e) => {
-    if (!document.body.classList.contains("nav-open")) return;
-    const clickedInside = menu.contains(e.target) || btn.contains(e.target);
-    if (!clickedInside) closeMenu();
-  });
+    menu.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (isMobile()) closeMenu();
+      });
+    });
 
-  // Se passi a desktop, chiudi overlay e dropdown
-  window.addEventListener("resize", () => {
-    if (!isMobile()) closeMenu();
-  });
-})();
-</script>
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      const clickedInside = menu.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside) closeMenu();
+    });
 
-
-
+    window.addEventListener("resize", () => {
+      if (!isMobile()) closeMenu();
+    });
+  })();
+  </script>
 </body>
 </html>

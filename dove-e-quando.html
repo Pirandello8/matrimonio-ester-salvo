@@ -2,59 +2,61 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Dove e quando – Ester & Salvo</title>
+  <title>Dove e quando – Ester &amp; Salvo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <header>
+    <nav class="nav">
+      <div class="nav-logo">Ester &amp; Salvo</div>
 
-  <!-- NAVBAR con dropdown (stessa di prima, con Informazioni attivo) -->
- <header>
-   <nav class="nav">
-  <div class="nav-logo">Ester &amp; Salvo</div>
+      <!-- HAMBURGER (solo mobile) -->
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Apri menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- HAMBURGER (solo mobile) -->
-  <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+      <!-- MENU -->
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
 
-  <!-- MENU -->
-  <div class="nav-menu" id="navMenu">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
+          <li class="has-dropdown open">
+            <button type="button" class="nav-link-main" aria-expanded="false">
+              Informazioni
+            </button>
+            <ul class="dropdown">
+              <li><a href="dove-e-quando.html" class="active">Dove e quando</a></li>
+              <li><a href="timeline.html">Timeline</a></li>
+            </ul>
+          </li>
 
-      <li class="has-dropdown">
-  <button type="button" class="nav-link-main" aria-expanded="false">
-    Informazioni
-  </button>
-  <ul class="dropdown">
-    <li><a href="dove-e-quando.html">Dove e quando</a></li>
-    <li><a href="timeline.html">Timeline</a></li>
-  </ul>
-</li>
+          <li class="has-dropdown">
+            <button type="button" class="nav-link-main" aria-expanded="false">
+              Info su Licata
+            </button>
+            <ul class="dropdown">
+              <li><a href="ristoranti.html">Ristoranti</a></li>
+              <li><a href="bar.html">Bar</a></li>
+              <li><a href="luoghi.html">Luoghi da visitare</a></li>
+              <li><a href="come-arrivare.html">Come arrivare</a></li>
+            </ul>
+          </li>
 
-      <li class="has-dropdown">
-  <button type="button" class="nav-link-main" aria-expanded="false">
-    Info su Licata
-  </button>
-  <ul class="dropdown">
-    <li><a href="ristoranti.html">Ristoranti</a></li>
-    <li><a href="bar.html">Bar</a></li>
-    <li><a href="luoghi.html">Luoghi da visitare</a></li>
-    <li><a href="come-arrivare.html">Come arrivare</a></li>
-  </ul>
-</li>
-
-      <li><a href="rsvp.html">RSVP</a></li>
-      <li><a href="lista-nozze.html">Lista nozze</a></li>
-    </ul>
-  </div>
-</nav>
-
-
+          <li><a href="rsvp.html">RSVP</a></li>
+          <li><a href="lista-nozze.html">Lista nozze</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
-
 
   <!-- HERO SEMPLICE CON TITOLO -->
   <section class="hero hero-small">
@@ -69,87 +71,76 @@
   </section>
 
   <main class="page-main">
-
     <!-- BLOCCO CHIESA -->
     <section class="place-section">
-  <div class="place-card">
-    <div class="place-media">
-      <img src="img/chiesa.jpg" alt="Chiesa della cerimonia">
-    </div>
+      <div class="place-card">
+        <div class="place-media">
+          <img src="img/chiesa.jpg" alt="Chiesa della cerimonia">
+        </div>
 
-    <div class="wedding-card">
-      <h2>Chiesa di San Domenico</h2>
-      <p>La cerimonia religiosa si terrà in questa Chiesa nel cuore del centro storico di Licata.</p>
+        <div class="wedding-card">
+          <h2>Chiesa di San Domenico</h2>
+          <p>La cerimonia religiosa si terrà in questa Chiesa nel cuore del centro storico di Licata.</p>
 
-      <div class="wedding-info-row">
-        <span class="wedding-label">Orario:</span>
-        <span class="wedding-value">16:00</span>
+          <div class="wedding-info-row">
+            <span class="wedding-label">Orario:</span>
+            <span class="wedding-value">16:00</span>
+          </div>
+
+          <div class="wedding-info-row">
+            <span class="wedding-label">Indirizzo:</span>
+            <span class="wedding-value">
+              <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+San+Domenico+Licata"
+                 target="_blank" rel="noopener">
+                Corso Roma, 39, 92027 Licata AG
+              </a>
+            </span>
+          </div>
+        </div>
       </div>
-
-      <div class="wedding-info-row">
-        <span class="wedding-label">Indirizzo:</span>
-        <span class="wedding-value">
-          <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+San+Domenico+Licata"
-             target="_blank" rel="noopener">
-            Corso Roma, 39, 92027 Licata AG
-          </a>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
     </section>
 
     <!-- BLOCCO LOCATION -->
     <section class="place-section">
-  <div class="place-card reverse">
-    <div class="place-media">
-      <img src="img/location.webp" alt="Location del ricevimento">
-    </div>
+      <div class="place-card reverse">
+        <div class="place-media">
+          <img src="img/location.webp" alt="Location del ricevimento">
+        </div>
 
-    <div class="location-card">
-      <h2>Feudo Nobile</h2>
-      <p class="desc">Dopo la cerimonia ci sposteremo qui per iniziare i festeggiamenti!</p>
+        <div class="location-card">
+          <h2>Feudo Nobile</h2>
+          <p class="desc">Dopo la cerimonia ci sposteremo qui per iniziare i festeggiamenti!</p>
 
-      <div class="wedding-info-row">
-        <span class="wedding-label">Indirizzo:</span>
-        <span class="wedding-value">
-          <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x1311a91662ef7aef:0x4d2be371d2ea966f?sa=X&ved=1t:8290&ictx=111"
-             target="_blank" rel="noopener">
-            Contrada Feudo Nobile, 93012 Gela CL
-          </a>
-        </span>
+          <div class="wedding-info-row">
+            <span class="wedding-label">Indirizzo:</span>
+            <span class="wedding-value">
+              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x1311a91662ef7aef:0x4d2be371d2ea966f?sa=X&ved=1t:8290&ictx=111"
+                 target="_blank" rel="noopener">
+                Contrada Feudo Nobile, 93012 Gela CL
+              </a>
+            </span>
+          </div>
+
+          <div class="wedding-info-row wedding-info-block">
+            <span class="wedding-label">Autobus</span>
+            <p class="wedding-value">
+              È possibile usufruire di un autobus per spostarsi dalla Chiesa alla Location.
+              Nella pagina RSVP puoi indicare se desideri questo servizio.
+            </p>
+          </div>
+        </div>
       </div>
-
-      <div class="wedding-info-row wedding-info-block">
-        <span class="wedding-label">Autobus</span>
-        <p class="wedding-value">
-          È possibile usufruire di un autobus per spostarsi dalla Chiesa alla Location.
-          Nella pagina RSVP puoi indicare se desideri questo servizio.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
     </section>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-col">
         <h4 class="footer-title">Contatti</h4>
-        <p>Ester: <a href="tel:+39320 600 9122">+39 320 600 9122</a></p>
-        <p>Salvo: <a href="tel:+39327 779 2279">+39 327 779 2279</a></p>
+        <p>Ester: <a href="tel:+393206009122">+39 320 600 9122</a></p>
+        <p>Salvo: <a href="tel:+393277792279">+39 327 779 2279</a></p>
         <p><a href="mailto:salcur89@live.com">salcur89@live.com</a></p>
         <p><a href="mailto:ester.barbieri5@gmail.com">ester.barbieri5@gmail.com</a></p>
-
       </div>
 
       <div class="footer-col">
@@ -170,86 +161,84 @@
         </ul>
       </div>
     </div>
-    
-<div class="footer-bottom">
+
+    <div class="footer-bottom">
       <p><span>Ester &amp; Salvo</span> · 8 Agosto 2026</p>
     </div>
   </footer>
 
+  <!-- NAV MOBILE SCRIPT (stabile su telefono: usa click) -->
   <script>
-(function () {
-  const btn = document.querySelector(".nav-toggle");
-  const menu = document.getElementById("navMenu");
-  if (!btn || !menu) return;
+  (function () {
+    const btn = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("navMenu");
+    if (!btn || !menu) return;
 
-  const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
-  const allDropdownLis = menu.querySelectorAll(".has-dropdown");
-  const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
+    const dropdownButtons = menu.querySelectorAll(".has-dropdown > .nav-link-main");
+    const allDropdownLis = menu.querySelectorAll(".has-dropdown");
+    const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
 
-  function closeDropdowns() {
-    allDropdownLis.forEach(li => li.classList.remove("open"));
-    dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
-  }
-
-  function closeMenu() {
-    document.body.classList.remove("nav-open");
-    btn.setAttribute("aria-expanded", "false");
-    closeDropdowns();
-  }
-
-  // Hamburger toggle
-  btn.addEventListener("pointerup", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const open = !document.body.classList.contains("nav-open");
-    if (open) {
-      document.body.classList.add("nav-open");
-      btn.setAttribute("aria-expanded", "true");
-    } else {
-      closeMenu();
+    function closeDropdowns() {
+      allDropdownLis.forEach(li => li.classList.remove("open"));
+      dropdownButtons.forEach(b => b.setAttribute("aria-expanded", "false"));
     }
-  });
 
-  // Dropdown toggle (solo mobile)
-  dropdownButtons.forEach((b) => {
-    b.addEventListener("pointerup", (e) => {
-      if (!isMobile()) return;
+    function closeMenu() {
+      document.body.classList.remove("nav-open");
+      btn.setAttribute("aria-expanded", "false");
+      closeDropdowns();
+    }
+
+    // hamburger
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-
-      const li = b.closest(".has-dropdown");
-      const willOpen = !li.classList.contains("open");
-
-      // chiudi tutti e poi apri solo quello richiesto
-      closeDropdowns();
-      if (willOpen) {
-        li.classList.add("open");
-        b.setAttribute("aria-expanded", "true");
+      const open = !document.body.classList.contains("nav-open");
+      if (open) {
+        document.body.classList.add("nav-open");
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        closeMenu();
       }
     });
-  });
 
-  // Se clicchi un link (anche dentro dropdown), chiudi tutto
-  menu.querySelectorAll("a").forEach(a => {
-    a.addEventListener("pointerup", () => {
-      if (isMobile()) closeMenu();
+    // dropdown (solo mobile)
+    dropdownButtons.forEach((b) => {
+      b.addEventListener("click", (e) => {
+        if (!isMobile()) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const li = b.closest(".has-dropdown");
+        const willOpen = !li.classList.contains("open");
+
+        closeDropdowns();
+        if (willOpen) {
+          li.classList.add("open");
+          b.setAttribute("aria-expanded", "true");
+        }
+      });
     });
-  });
 
-  // Click fuori: chiudi
-  document.addEventListener("pointerup", (e) => {
-    if (!document.body.classList.contains("nav-open")) return;
-    const clickedInside = menu.contains(e.target) || btn.contains(e.target);
-    if (!clickedInside) closeMenu();
-  });
+    // click su un link: chiudi
+    menu.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (isMobile()) closeMenu();
+      });
+    });
 
-  // Se passi a desktop, chiudi overlay e dropdown
-  window.addEventListener("resize", () => {
-    if (!isMobile()) closeMenu();
-  });
-})();
-</script>
+    // click fuori: chiudi
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      const clickedInside = menu.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside) closeMenu();
+    });
 
-  
+    // resize: se torni desktop chiudi
+    window.addEventListener("resize", () => {
+      if (!isMobile()) closeMenu();
+    });
+  })();
+  </script>
 </body>
 </html>
