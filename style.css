@@ -18,7 +18,12 @@ body {
   line-height: 1.6;
 }
 
-a { text-decoration: none; color: inherit; }
+.wedding-value a,
+.location-card a{
+  text-decoration: underline;
+  color: inherit;
+}
+
 
 /* =========================
    HEADER / NAV (PULITA)
@@ -757,7 +762,14 @@ main {
 .wedding-info-block .wedding-label { font-size: 16px; }
 .wedding-info-block .wedding-value { font-size: 16px; line-height: 1.6; margin: 0; }
 
-.location-card a { color: #8a6d3b; text-decoration: underline; }
+
+
+.wedding-value a,
+.location-card a{
+  text-decoration: underline;
+  color: inherit;
+}
+
 
 /* =========================
    PAGINA "COME ARRIVARE"
@@ -846,6 +858,10 @@ main {
   margin-bottom: 8px;
   color: #495b39;
 }
+
+
+
+
 
 /* =========================
    RESPONSIVE (layout generale)
