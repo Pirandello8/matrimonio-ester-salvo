@@ -18,8 +18,27 @@ body {
   line-height: 1.6;
 }
 
-.wedding-value a,
-.location-card a{
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.wedding-info-row a{
+  text-decoration: underline !important;
+  
+}
+
+
+.wedding-info-row .wedding-value a:hover{
+  opacity: .85;
+}
+
+.btn,
+.info-cta{
+  text-decoration: none;
+}
+
+.wedding-value a{
   text-decoration: underline;
   color: inherit;
 }
@@ -554,6 +573,22 @@ main {
   font-weight: 500;
 }
 
+.footer-credit{
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.footer-credit a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-credit a:hover{
+  opacity: 0.8;
+}
+
 /* =========================
    TIMELINE (se usata)
    ========================= */
@@ -650,6 +685,17 @@ main {
 .info-item-meta { font-size: 15px; margin-bottom: 8px; color: var(--text-main); }
 
 .info-item-note { font-size: 15px; line-height: 1.7; color: var(--text-light); }
+
+.info-item-meta a{
+  text-decoration: underline;
+  color: inherit;
+  text-underline-offset: 2px;
+}
+
+.info-item-meta a:hover{
+  opacity: 0.85;
+}
+
 
 .info-cta-row {
   display: flex;
@@ -763,12 +809,6 @@ main {
 .wedding-info-block .wedding-value { font-size: 16px; line-height: 1.6; margin: 0; }
 
 
-
-.wedding-value a,
-.location-card a{
-  text-decoration: underline;
-  color: inherit;
-}
 
 
 /* =========================
