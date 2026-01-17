@@ -971,3 +971,19 @@ main {
   header { z-index: 9999; }
   .nav-menu { z-index: 10001; }
 }
+
+@media (max-width: 800px) {
+  /* centra testi nelle pagine info (ristoranti, bar, luoghi, ecc) */
+  .info-list-page,
+  .info-list-page .info-item,
+  .info-list-page .info-item-title,
+  .info-list-page .info-item-meta,
+  .info-list-page .info-item-note {
+    text-align: center;
+  }
+
+  /* centra anche i contatti nel footer */
+  .footer-col {
+    text-align: center;
+  }
+}
